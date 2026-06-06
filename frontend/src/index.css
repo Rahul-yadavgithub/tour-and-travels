@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal: #1A1A1A;
+  --color-ivory: #FAF8F3;
+  --color-gold: #E8B923;
+  --color-gold-dark: #d4a71b;
+  --font-serif: "Fraunces", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom utility classes mimicking original site */
+@layer components {
+  .container-max {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .container-px {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 768px) {
+    .container-px {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .eyebrow-gold {
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .eyebrow-ivory {
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .btn-gold {
+    background-color: var(--color-gold);
+    color: var(--color-charcoal);
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+    cursor: pointer;
+  }
+  .btn-gold:hover {
+    background-color: var(--color-gold-dark);
+  }
+  .btn-outline-ivory {
+    background-color: transparent;
+    color: var(--color-ivory);
+    border: 1px solid rgba(250, 248, 243, 0.4);
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-outline-ivory:hover {
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+  }
+  .hr-gold {
+    border: none;
+    border-top: 1px solid var(--color-gold);
+    margin: 1rem 0;
+  }
+  .link-underline {
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+  .link-underline:hover {
+    opacity: 0.7;
+  }
+  .input-base {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: transparent;
+    border: 1px solid rgba(26,26,26,0.2);
+    border-radius: 2px;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--color-charcoal);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .input-base:focus {
+    border-color: var(--color-charcoal);
+  }
+  .label-base {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-charcoal);
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
