@@ -12,7 +12,7 @@ const notifyCustomerNewEnquiry = async (enquiry) => {
     phone = `+${phone}`;
   }
 
-  const messageBody = `Dear ${enquiry.fullName},\n\nThank you for your enquiry with SN Tour And Travels! We have received your details and our team will contact you with a free customized itinerary within 2 hours.\n\nWarm Regards,\nSN Tour And Travels`;
+  const messageBody = `Dear ${enquiry.fullName},\n\nThank you for your enquiry with Varanasi SN Tour & Travels! We have received your details and our team will contact you with a free customized itinerary within 2 hours.\n\nWarm Regards,\nVaranasi SN Tour & Travels`;
 
   console.log(`[Notification Service] Attempting to send Customer SMS to: ${phone}`);
   Promise.all([
