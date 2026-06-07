@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 import { API_BASE_URL } from '../config';
 
 export default function PackageDetail() {
@@ -51,17 +52,66 @@ export default function PackageDetail() {
 
   return (
     <div className="bg-ivory text-earth pt-20">
-      {/* Hero */}
-      <div className="relative bg-black h-80 md:h-[30rem] overflow-hidden">
-        <img src={pkg.imageUrl} alt={pkg.title} className="w-full h-full object-cover opacity-40" />
-        <div className="absolute inset-0 bg-black/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-earth via-earth/50 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-full p-8 md:p-16">
-          <div className="max-w-[1200px] mx-auto">
-            <span className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-2 block">{pkg.tag}</span>
-            <h1 className="font-serif text-4xl md:text-5xl text-ivory font-light">{pkg.title}</h1>
-            <p className="text-ivory/70 mt-2 text-lg">{pkg.duration}</p>
+      {/* Premium Hybrid Hero Section with Motion */}
+      <div className="px-4 md:px-8 mt-6">
+        <div className="relative w-full h-[450px] md:h-[600px] rounded-[32px] overflow-hidden shadow-2xl mx-auto max-w-[1400px] bg-black">
+          
+          {/* 1. Blurred background image layer (Cinematic Slow Zoom) */}
+          <motion.img 
+            initial={{ scale: 1.1, opacity: 0 }}
+            animate={{ scale: 1.25, opacity: 0.6 }}
+            transition={{ duration: 10, ease: "easeOut" }}
+            src={pkg.imageUrl} 
+            alt="" 
+            className="absolute inset-0 w-full h-full object-cover blur-3xl" 
+          />
+          
+          {/* 2. Dark overlay */}
+          <div className="absolute inset-0 bg-black/40"></div>
+          
+          {/* 3. Main full image layer (Subtle scale in) */}
+          <motion.img 
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            src={pkg.imageUrl} 
+            alt={pkg.title} 
+            className="absolute inset-0 w-full h-full object-contain drop-shadow-2xl z-10" 
+          />
+          
+          {/* Bottom Gradient for Text Readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent z-20 pointer-events-none"></div>
+
+          {/* 4. Hero content layer (Fade up stagger) */}
+          <div className="absolute inset-0 z-30 flex flex-col justify-end p-8 md:p-16">
+            <div className="max-w-[1200px] w-full mx-auto">
+              <motion.span 
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+                className="text-gold font-sans text-sm font-bold tracking-[0.2em] uppercase mb-4 block drop-shadow-md"
+              >
+                {pkg.tag || 'Sacred Tour'}
+              </motion.span>
+              <motion.h1 
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                className="font-serif text-4xl md:text-5xl lg:text-6xl text-white font-medium drop-shadow-xl leading-tight mb-4 max-w-4xl"
+              >
+                {pkg.title}
+              </motion.h1>
+              <motion.p 
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.7, ease: "easeOut" }}
+                className="text-white/90 text-lg md:text-xl font-light drop-shadow-md"
+              >
+                {pkg.duration}
+              </motion.p>
+            </div>
           </div>
+          
         </div>
       </div>
 
@@ -98,7 +148,12 @@ export default function PackageDetail() {
             <div className="absolute -inset-1 bg-gradient-to-r from-gold to-gold-dark rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
             <div className="relative bg-white p-8 rounded-2xl shadow-xl border-t-4 border-saffron">
             <p className="text-earth-400 text-sm mb-2">Price Details</p>
-            <p className="font-serif text-4xl text-earth mb-6">{pkg.price}</p>
+            <div className="flex items-baseline gap-2 mb-6">
+              <span className="font-serif text-4xl text-earth">₹{pkg.currentPrice}</span>
+              {pkg.oldPrice && (
+                <span className="text-xl text-earth/40 line-through">₹{pkg.oldPrice}</span>
+              )}
+            </div>
             
             <ul className="space-y-3 mb-8">
               {pkg.features.map((feature, i) => (
@@ -120,9 +175,20 @@ export default function PackageDetail() {
               </a>
             </div>
           </div>
-        </div>
+          </div>
         </div>
       </div>
+
+      {/* End of Page Notifier */}
+      <div className="mt-16 mb-12 flex flex-col items-center justify-center text-center opacity-60">
+        <div className="flex items-center justify-center gap-4 w-full max-w-md">
+          <div className="h-px bg-gradient-to-r from-transparent to-charcoal flex-1"></div>
+          <span className="text-gold text-lg">❖</span>
+          <div className="h-px bg-gradient-to-l from-transparent to-charcoal flex-1"></div>
+        </div>
+        <p className="font-serif text-sm text-charcoal mt-3 tracking-widest uppercase">End of Tour Details</p>
+      </div>
+
     </div>
   );
 }

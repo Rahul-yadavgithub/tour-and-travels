@@ -1,18 +1,18 @@
-import { useDashboardStats } from '../hooks/useDashboardStats';
+import { useState, useEffect } from 'react';
 import { useUser } from '@clerk/clerk-react';
 import { Link } from 'react-router-dom';
+import { useApi } from '../hooks/useApi';
 import { 
-  Image as ImageIcon, 
-  CarFront, 
-  Hotel, 
-  Star, 
+  Route as RouteIcon,
+  Package,
+  Star,
   Plus,
-  ArrowRight,
-  Activity
+  Activity,
+  Users
 } from 'lucide-react';
 
 const StatCard = ({ title, value, icon: Icon, colorClass }) => (
-  <div className="card flex items-center p-6">
+  <div className="card flex items-center p-6 bg-white border border-zinc-200 rounded-xl shadow-sm">
     <div className={`w-12 h-12 rounded-full flex items-center justify-center mr-4 ${colorClass}`}>
       <Icon className="w-6 h-6" />
     </div>
@@ -24,14 +24,14 @@ const StatCard = ({ title, value, icon: Icon, colorClass }) => (
 );
 
 const QuickAction = ({ title, description, icon: Icon, to }) => (
-  <Link to={to} className="group p-5 bg-white border border-zinc-200 rounded-xl hover:border-accent hover:shadow-soft transition-all flex items-start gap-4">
-    <div className="w-10 h-10 rounded-lg bg-zinc-50 flex items-center justify-center text-zinc-500 group-hover:bg-accent/10 group-hover:text-accent transition-colors">
+  <Link to={to} className="group p-5 bg-white border border-zinc-200 rounded-xl hover:border-amber-500 hover:shadow-md transition-all flex items-start gap-4">
+    <div className="w-10 h-10 rounded-lg bg-zinc-50 flex items-center justify-center text-zinc-500 group-hover:bg-amber-50 group-hover:text-amber-600 transition-colors">
       <Icon className="w-5 h-5" />
     </div>
     <div className="flex-1">
       <div className="flex items-center justify-between mb-1">
         <h4 className="text-sm font-semibold text-zinc-900">{title}</h4>
-        <Plus className="w-4 h-4 text-zinc-400 group-hover:text-accent transition-colors" />
+        <Plus className="w-4 h-4 text-zinc-400 group-hover:text-amber-500 transition-colors" />
       </div>
       <p className="text-xs text-zinc-500">{description}</p>
     </div>
@@ -39,43 +39,43 @@ const QuickAction = ({ title, description, icon: Icon, to }) => (
 );
 
 const Dashboard = () => {
-  const { stats, loading, error } = useDashboardStats();
   const { user } = useUser();
+  const { fetchWithAuth } = useApi();
+  const [stats, setStats] = useState({ totalEnquiries: 0, totalPackages: 0, totalRoutes: 0, pendingReviews: 0 });
+  const [activities, setActivities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const [statsData, activityData] = await Promise.all([
+          fetchWithAuth('/dashboard/stats'),
+          fetchWithAuth('/dashboard/activity')
+        ]);
+        setStats(statsData);
+        setActivities(activityData);
+      } catch (err) {
+        console.error(err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
 
   if (loading) {
-    return <div className="flex items-center justify-center h-64 text-zinc-500">Loading dashboard...</div>;
+    return <div className="flex items-center justify-center h-64 text-zinc-500">Loading dashboard data...</div>;
   }
 
-  // Calculate profile completion (mock logic based on user data presence)
-  const profileComplete = [user?.firstName, user?.lastName, user?.imageUrl].filter(Boolean).length;
-  const completionPercent = Math.round((profileComplete / 3) * 100);
-
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
+    <div className="space-y-8 animate-in fade-in duration-500 p-6 max-w-7xl mx-auto">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-zinc-900">Welcome back, {user?.firstName || 'Guide'}</h1>
-        <p className="text-sm text-zinc-500 mt-1">Here's a snapshot of your guide business today.</p>
-      </div>
-
-      {/* Profile Completion Bar */}
-      <div className="bg-white border border-zinc-200 rounded-xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="flex-1 w-full">
-          <div className="flex justify-between items-end mb-2">
-            <span className="text-sm font-medium text-zinc-900">Profile completion</span>
-            <span className="text-xs font-semibold text-zinc-700">{completionPercent}%</span>
-          </div>
-          <div className="w-full bg-zinc-100 rounded-full h-2 overflow-hidden">
-            <div 
-              className="bg-accent h-2 rounded-full transition-all duration-1000 ease-out" 
-              style={{ width: `${completionPercent}%` }}
-            ></div>
-          </div>
-          <p className="text-xs text-zinc-500 mt-2">Complete your profile to appear higher on the customer site.</p>
-        </div>
-        <Link to="/settings" className="btn btn-secondary whitespace-nowrap text-sm h-9">
-          Complete <ArrowRight className="w-4 h-4 ml-2" />
-        </Link>
+        <h1 className="text-2xl font-bold text-zinc-900">Welcome back, {user?.firstName || 'Admin'}</h1>
+        <p className="text-sm text-zinc-500 mt-1">Here's a snapshot of your tourism business today.</p>
       </div>
 
       {error && (
@@ -85,64 +85,73 @@ const Dashboard = () => {
       )}
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         <StatCard 
-          title="Portfolio photos" 
-          value={stats.totalPhotos || 0} 
-          icon={ImageIcon} 
-          colorClass="bg-zinc-100 text-zinc-600" 
+          title="Total Enquiries" 
+          value={stats.totalEnquiries || 0} 
+          icon={Users} 
+          colorClass="bg-blue-100 text-blue-600" 
         />
         <StatCard 
-          title="Cars listed" 
-          value={stats.totalCars || 0} 
-          icon={CarFront} 
-          colorClass="bg-zinc-100 text-zinc-600" 
+          title="Active Packages" 
+          value={stats.totalPackages || 0} 
+          icon={Package} 
+          colorClass="bg-amber-100 text-amber-600" 
         />
         <StatCard 
-          title="Hotels listed" 
-          value={stats.totalHotels || 0} 
-          icon={Hotel} 
-          colorClass="bg-zinc-100 text-zinc-600" 
+          title="Configured Routes" 
+          value={stats.totalRoutes || 0} 
+          icon={RouteIcon} 
+          colorClass="bg-emerald-100 text-emerald-600" 
         />
         <StatCard 
-          title="Pending reviews" 
+          title="Pending Reviews" 
           value={stats.pendingReviews || 0} 
           icon={Star} 
-          colorClass="bg-amber-100 text-amber-600" 
+          colorClass="bg-purple-100 text-purple-600" 
         />
       </div>
 
       {/* Bottom Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-4">
-          <h3 className="text-base font-semibold text-zinc-900">Quick actions</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <QuickAction title="Add portfolio photo" description="Upload a new image to your gallery." icon={ImageIcon} to="/portfolio" />
-            <QuickAction title="Add a car" description="List a new vehicle for customers." icon={CarFront} to="/services/cars" />
-            <QuickAction title="Add a hotel" description="Add a partner hotel offering." icon={Hotel} to="/services/hotels" />
-            <QuickAction title="Review pending reviews" description="Approve or reject customer feedback." icon={Star} to="/reviews" />
+      <div className="space-y-8">
+        <div className="space-y-4">
+          <h3 className="text-base font-bold text-zinc-900 flex items-center gap-2">
+            <Activity className="w-5 h-5 text-zinc-400" /> Quick Actions
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <QuickAction title="View Enquiries" description="Manage customer leads." icon={Users} to="/enquiries" />
+            <QuickAction title="Create Package" description="Build new tour package." icon={Package} to="/packages" />
+            <QuickAction title="Manage Routes" description="Configure pickup points." icon={RouteIcon} to="/route-management" />
+            <QuickAction title="Review Feedback" description="Approve customer reviews." icon={Star} to="/reviews" />
           </div>
         </div>
         
         <div className="space-y-4">
-          <h3 className="text-base font-semibold text-zinc-900">Recent activity</h3>
-          <div className="card p-5 h-[200px] flex flex-col">
-            <ul className="space-y-4 flex-1">
-              <li className="flex gap-3">
-                <div className="mt-1 w-2 h-2 rounded-full bg-success shrink-0" />
-                <div>
-                  <p className="text-sm font-medium text-zinc-900">Dashboard ready</p>
-                  <p className="text-xs text-zinc-500 mt-0.5">Connect your backend to see live updates.</p>
+          <h3 className="text-base font-bold text-zinc-900">Recent Activity</h3>
+          <div className="flex gap-4 overflow-x-auto pb-6 custom-scrollbar snap-x snap-mandatory">
+            {activities.length > 0 ? activities.map((activity, idx) => (
+              <div key={`${activity.id}-${idx}`} className="bg-white border border-zinc-200 rounded-xl p-5 min-w-[280px] max-w-[320px] flex-shrink-0 shadow-sm hover:shadow-md transition-shadow snap-start">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white shadow-inner ${activity.type === 'enquiry' ? 'bg-gradient-to-br from-blue-400 to-blue-600' : 'bg-gradient-to-br from-purple-400 to-purple-600'}`}>
+                    {activity.type === 'enquiry' ? <Users className="w-5 h-5"/> : <Star className="w-5 h-5"/>}
+                  </div>
+                  <div>
+                    <div className="font-bold text-zinc-900 text-sm">{activity.type === 'enquiry' ? 'New Enquiry' : 'New Review'}</div>
+                    <time className="text-xs text-zinc-500 font-medium">{new Date(activity.date).toLocaleDateString()}</time>
+                  </div>
                 </div>
-              </li>
-              <li className="flex gap-3">
-                <div className="mt-1 w-2 h-2 rounded-full bg-zinc-300 shrink-0" />
-                <div>
-                  <p className="text-sm font-medium text-zinc-900">Sign in with Clerk</p>
-                  <p className="text-xs text-zinc-500 mt-0.5">JWT is attached to every API call automatically.</p>
+                <div className="text-zinc-800 font-bold text-base leading-tight mb-2 line-clamp-2">
+                  {activity.title}
                 </div>
-              </li>
-            </ul>
+                <div className="text-zinc-500 text-sm bg-zinc-50 p-2 rounded-lg border border-zinc-100">
+                  {activity.description}
+                </div>
+              </div>
+            )) : (
+              <div className="bg-white border border-zinc-200 rounded-xl p-8 w-full text-center text-zinc-500 text-sm shadow-sm">
+                No recent activity yet. As soon as a customer submits an enquiry or review, it will appear here!
+              </div>
+            )}
           </div>
         </div>
       </div>

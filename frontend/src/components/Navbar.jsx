@@ -37,6 +37,7 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-7 flex-shrink-0">
           <Link className={`font-sans text-xs font-semibold tracking-[0.15em] uppercase transition-colors whitespace-nowrap ${location.pathname === '/' ? 'text-gold' : (isLightText ? 'text-white/80 hover:text-white' : 'text-charcoal/70 hover:text-charcoal')}`} to="/">Home</Link>
           <Link className={`font-sans text-xs font-semibold tracking-[0.15em] uppercase transition-colors whitespace-nowrap ${location.pathname === '/tour-packages' ? 'text-gold' : (isLightText ? 'text-white/80 hover:text-white' : 'text-charcoal/70 hover:text-charcoal')}`} to="/tour-packages">Tour Packages</Link>
+          <Link className={`font-sans text-xs font-semibold tracking-[0.15em] uppercase transition-colors whitespace-nowrap ${location.pathname === '/pickup-route-guide' ? 'text-gold' : (isLightText ? 'text-white/80 hover:text-white' : 'text-charcoal/70 hover:text-charcoal')}`} to="/pickup-route-guide">Pickup & Route Guide</Link>
           
           {/* Services Dropdown */}
           <div className="relative group">
@@ -50,7 +51,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Link className={`font-sans text-xs font-semibold tracking-[0.15em] uppercase transition-colors whitespace-nowrap ${location.pathname.startsWith('/package/') ? 'text-gold' : (isLightText ? 'text-white/80 hover:text-white' : 'text-charcoal/70 hover:text-charcoal')}`} to="/package/1">Featured Tour</Link>
+
           <Link className={`font-sans text-xs font-semibold tracking-[0.15em] uppercase transition-colors whitespace-nowrap ${location.pathname === '/enquire-now' ? 'text-gold' : (isLightText ? 'text-white/80 hover:text-white' : 'text-charcoal/70 hover:text-charcoal')}`} to="/enquire-now">Enquire</Link>
           <Link className="bg-gold text-charcoal font-bold text-sm px-6 py-2.5 rounded-full inline-flex items-center justify-center transition-all hover:brightness-110 active:scale-95 cursor-pointer shadow-lg" to="/enquire-now">
             Get Free Quote
@@ -91,7 +92,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Link onClick={() => setIsMobileMenuOpen(false)} className={`block font-sans text-xs font-semibold tracking-[0.15em] uppercase ${location.pathname.startsWith('/package/') ? 'text-gold' : 'text-ivory'}`} to="/package/1">Featured Tour</Link>
+
           <Link onClick={() => setIsMobileMenuOpen(false)} className={`block font-sans text-xs font-semibold tracking-[0.15em] uppercase ${location.pathname === '/enquire-now' ? 'text-gold' : 'text-ivory'}`} to="/enquire-now">Enquire</Link>
           <Link onClick={() => setIsMobileMenuOpen(false)} className="bg-gold text-charcoal font-bold text-sm px-6 py-3 rounded-full inline-flex items-center justify-center transition-all hover:brightness-110 active:scale-95 cursor-pointer w-full text-center mt-4" to="/enquire-now">
             Get Free Quote

@@ -5,12 +5,16 @@ import {
   CarFront, 
   Hotel, 
   Star, 
-  Settings 
+  Settings,
+  Package
 } from 'lucide-react';
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const navItems = [
     { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
+    { name: 'Enquiries', path: '/enquiries', icon: Star },
+    { name: 'Package Management', path: '/packages', icon: Package },
+    { name: 'Route Management', path: '/route-management', icon: LayoutDashboard },
     { name: 'Portfolio', path: '/portfolio', icon: Image },
     { name: 'Car Services', path: '/services/cars', icon: CarFront },
     { name: 'Hotel Services', path: '/services/hotels', icon: Hotel },

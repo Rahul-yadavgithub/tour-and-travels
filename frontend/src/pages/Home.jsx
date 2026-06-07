@@ -260,25 +260,47 @@ export default function Home() {
             <p className="text-charcoal-400 text-base leading-relaxed mt-6 max-w-xl">We provide safe & trusted guide services across the most revered pilgrimage destinations in North India.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {featuredPackages.length > 0 ? featuredPackages.map((pkg, index) => (
+            {featuredPackages.length > 0 ? featuredPackages.slice(0, 4).map((pkg, index) => (
               <div 
-                key={pkg.id} 
-                className="bg-ivory group overflow-hidden cursor-pointer rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300" 
-                onClick={() => navigate(`/package/${pkg.id}`)}
+                key={pkg._id || pkg.legacyId} 
+                className="bg-ivory group overflow-hidden cursor-pointer rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-earth/5" 
+                onClick={() => navigate(`/package/${pkg.legacyId || pkg._id}`)}
               >
                 <div className="relative h-56 md:h-64 overflow-hidden">
-                  <img src={pkg.imageUrl} alt={pkg.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/75 via-charcoal/25 to-charcoal/30"></div>
-                  <div className="absolute top-5 left-5">
-                    <span className="font-serif text-ivory text-5xl font-light italic opacity-80">
+                  <img src={pkg.imageUrl || (pkg.imageUrls && pkg.imageUrls[0])} alt={pkg.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent"></div>
+                  
+                  {pkg.discountPercentage > 0 && (
+                    <div className="absolute top-4 right-4 bg-gold text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg">
+                      {pkg.discountPercentage}% OFF
+                    </div>
+                  )}
+
+                  <div className="absolute bottom-4 left-4 flex justify-between items-end">
+                    <span className="font-serif text-ivory text-5xl font-light italic opacity-90 drop-shadow-md">
                       0{index + 1}
                     </span>
                   </div>
                 </div>
                 <div className="p-8">
-                  <p className="font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-2">{pkg.tag}</p>
+                  <div className="flex justify-between items-start mb-2">
+                    <p className="font-sans text-[10px] font-bold tracking-[0.15em] uppercase text-earth/60">{pkg.tag || pkg.subtitle || 'Pilgrimage'}</p>
+                    <div className="text-right">
+                      {pkg.oldPrice && pkg.discountPercentage > 0 && (
+                        <div className="flex items-center justify-end gap-1.5 mb-0.5">
+                          <span className="text-xs text-red-500/70 font-semibold line-through decoration-red-500/40">
+                            ₹{pkg.oldPrice}
+                          </span>
+                          <span className="text-[9px] font-bold text-red-600 bg-red-50 border border-red-100 px-1 py-0.5 rounded-sm">
+                            {pkg.discountPercentage}% OFF
+                          </span>
+                        </div>
+                      )}
+                      <p className="font-serif text-2xl font-semibold text-earth leading-none">₹{pkg.currentPrice}</p>
+                    </div>
+                  </div>
                   <h3 className="font-serif text-2xl md:text-3xl font-light mb-3 group-hover:text-gold transition-colors">{pkg.title}</h3>
-                  <p className="text-sm text-charcoal-400 leading-relaxed line-clamp-3">
+                  <p className="text-sm text-charcoal-400 leading-relaxed line-clamp-2">
                     {pkg.overview}
                   </p>
                 </div>

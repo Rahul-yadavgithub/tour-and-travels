@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import TourPackages from './pages/TourPackages';
 import PackageDetail from './pages/PackageDetail';
 import Enquire from './pages/Enquire';
+import PickupRouteGuide from './pages/PickupRouteGuide';
 
 import CarRentals from './pages/CarRentals';
 import Hotels from './pages/Hotels';
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/tour-packages" element={<TourPackages />} />
+            <Route path="/pickup-route-guide" element={<PickupRouteGuide />} />
             <Route path="/car-rentals" element={<CarRentals />} />
             <Route path="/hotels" element={<Hotels />} />
             <Route path="/package/:id" element={<PackageDetail />} />

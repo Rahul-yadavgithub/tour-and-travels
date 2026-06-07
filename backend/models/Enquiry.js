@@ -10,6 +10,7 @@ const EnquirySchema = new mongoose.Schema({
   children: { type: Number, default: 0 },
   budget: { type: String },
   package: { type: String },
+  status: { type: String, enum: ['New', 'Contacted', 'Resolved'], default: 'New' },
   createdAt: { type: Date, default: Date.now }
 });
 

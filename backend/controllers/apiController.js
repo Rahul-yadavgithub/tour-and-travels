@@ -3,111 +3,6 @@ const Review = require('../models/Review');
 const Stat = require('../models/Stat');
 const { notifyAdminNewEnquiry } = require('../services/notificationService');
 
-const packages = [
-  {
-    id: 1,
-    duration: 'Hassle-free darshan',
-    title: 'Kashi Vishwanath Darshan',
-    tag: 'VIP Support',
-    price: 'Enquire',
-    features: ['Kashi Vishwanath VIP Darshan', 'Durgakund & Sankat Mochan', 'BHU Vishwanath Temple', 'Ram Nagar & Swarved Mandir'],
-    link: '/package/1',
-    imageUrl: 'https://res.cloudinary.com/dz8whxcuk/image/upload/v1780826105/varanasi-munshi-ghat-orange-flags-pilgrims-card_gxnj1d.webp',
-    overview: 'The Kashi Vishwanath Temple is one of the most famous Hindu temples dedicated to Lord Shiva. It is located in Varanasi, Uttar Pradesh, India. The temple stands on the western bank of the holy river Ganga, and is one of the twelve Jyotirlingas, the holiest of Shiva temples. The main deity is known by the name Shri Vishwanath and Vishweshwara literally meaning "Lord of the Universe". Varanasi was called Kashi in ancient times, and hence the temple is popularly called Kashi Vishwanath Temple.',
-    officialInfo: 'The current structure was built on an adjacent site by the Maratha ruler, Ahilya Bai Holkar of Indore in 1780. Since 1983, the temple has been managed by the Government of Uttar Pradesh under the Shri Kashi Vishwanath Temple Act.',
-    itinerary: [
-      { title: 'Arrival & Setup', desc: 'Meet with Varanasi SN Tour & Travels representative at designated point. Briefing about temple protocols and dress code.' },
-      { title: 'VIP Darshan', desc: 'Skip the regular lines with our hassle-free darshan arrangement. Guided entry to the sanctum sanctorum of Kashi Vishwanath.' },
-      { title: 'City Temples Tour', desc: 'Guided visit to Durgakund, Sankat Mochan Hanuman Temple, Ram Nagar, BHU Vishwanath Temple, and the spectacular Swarved Mandir.' },
-      { title: 'Rituals & Departure', desc: 'Perform Jalabhishek and other sacred rituals under expert guidance. Safe drop-off back to your hotel.' }
-    ]
-  },
-  {
-    id: 2,
-    duration: 'Divine Experience',
-    title: 'Ganga Aarti Experience',
-    tag: 'Spiritual',
-    price: 'Enquire',
-    features: ['Divine Ganga Aarti at Dashashwamedh Ghat', 'Local Sightseeing', 'Polite & Friendly Behaviour', '100% Customer Satisfaction'],
-    link: '/package/2',
-    imageUrl: 'https://res.cloudinary.com/dz8whxcuk/image/upload/v1780826240/ganga-aarti-varanasi-priest-night_w3hhqq.webp',
-    overview: 'Ganga Aarti is a magnificent, deeply spiritual ritual performed daily on the banks of the Ganges. The most prominent Aarti takes place at Dashashwamedh Ghat in Varanasi. It involves the chanting of hymns, the rhythmic ringing of bells, and the offering of light to the holy river via multi-tiered brass lamps (diyas). It is a highly choreographed ceremony performed by young pandits draped in traditional attire.',
-    officialInfo: 'The Aarti is conducted daily at dusk (around 6:45 PM in summer and 6:00 PM in winter). It is organized by the Ganga Seva Nidhi trust. Seating is on a first-come, first-served basis unless special boat seating is arranged.',
-    itinerary: [
-      { title: 'Ghat Arrival', desc: 'Arrive at Dashashwamedh Ghat before sunset. Varanasi SN Tour & Travels will secure premium viewing spots or a private boat.' },
-      { title: 'The Ceremony', desc: 'Witness the 45-minute divine spectacle as priests offer fire to the River Goddess.' },
-      { title: 'Deep Daan', desc: 'Float your own diya (lamp) on the river for blessings, followed by local sightseeing of the illuminated ghats.' }
-    ]
-  },
-  {
-    id: 3,
-    duration: 'Complete Rituals',
-    title: 'Gaya Pind Daan Service',
-    tag: 'Sacred Rituals',
-    price: 'Enquire',
-    features: ['Pind Daan service with complete rituals', 'Experienced priests', 'Hotel Booking Assistance', 'Reasonable Price'],
-    link: '/package/3',
-    imageUrl: 'https://varanasiayodhya.com/images/Chitrakoot-sati-ansuya-temple.webp', // Using existing image for visual placeholder
-    overview: 'Gaya is a city of profound historical and mythological significance in Bihar, India, renowned globally as a crucial site for Pind Daan (offerings made to deceased ancestors). According to Hindu tradition, performing Pind Daan at the Vishnupad Temple in Gaya helps the souls of ancestors achieve Moksha (salvation) and breaks the cycle of rebirth.',
-    officialInfo: 'The primary rituals take place at the Phalgu River, Vishnupad Temple, and Akshayavat. The Pitru Paksha Mela, held annually in September/October, is the most highly recommended period for these rituals.',
-    itinerary: [
-      { title: 'Preparation', desc: 'Meet the experienced priests assigned by Varanasi SN Tour & Travels. Arrangement of all necessary Samagri (ritual items).' },
-      { title: 'Phalgu River Rituals', desc: 'Initial purifying bath and starting the Shraddha rituals on the banks of the Phalgu River.' },
-      { title: 'Vishnupad Temple', desc: 'Perform the main Pind Daan inside the temple premises under the guidance of Acharyas, ensuring complete adherence to Vedic procedures.' }
-    ]
-  },
-  {
-    id: 4,
-    duration: 'Ayodhya Darshan',
-    title: 'Ayodhya Ram Mandir Tour',
-    tag: 'Most Popular',
-    price: 'Enquire',
-    features: ['Darshan of Shri Ram Janmabhoomi', 'Major temples of Ayodhya', 'Family & Group Tours', 'Safe & Trusted Guide'],
-    link: '/package/4',
-    imageUrl: 'https://res.cloudinary.com/dz8whxcuk/image/upload/v1780826320/ayodhya-ram-mandir_d1s5dq.webp',
-    overview: 'The Ram Mandir is a Hindu temple in Ayodhya, Uttar Pradesh, India, located at the sacred Ram Janmabhoomi, the widely believed birthplace of Rama, a principal deity of Hinduism. The temple architecture follows the traditional Nagara style, featuring intricate carvings, massive spires, and a grand sanctum that houses the idol of Ram Lalla (the infant Rama).',
-    officialInfo: 'The temple complex is managed by the Shri Ram Janmabhoomi Teerth Kshetra trust. Standard Darshan timings are from 7:00 AM to 11:30 AM and 2:00 PM to 7:00 PM. Mobile phones and electronics are strictly prohibited inside.',
-    itinerary: [
-      { title: 'Arrival in Ayodhya', desc: 'Pick up and transfer. Proceed through security checkpoints with Varanasi SN Tour & Travels assistance.' },
-      { title: 'Ram Mandir Darshan', desc: 'Guided entry to the Ram Janmabhoomi complex for the darshan of Ram Lalla.' },
-      { title: 'Local Temples', desc: 'Visit to Hanuman Garhi, Kanak Bhawan, and the serene Saryu River ghats.' }
-    ]
-  },
-  {
-    id: 5,
-    duration: 'Sacred Bath',
-    title: 'Prayagraj Sangam Tour',
-    tag: 'Pilgrimage',
-    price: 'Enquire',
-    features: ['Triveni Sangam bath', 'Bade Hanuman Ji', 'Visit to sacred places', 'Excellent Service'],
-    link: '/package/5',
-    imageUrl: 'https://res.cloudinary.com/dz8whxcuk/image/upload/v1780825660/prayagraj-triveni-sangam-boat-seagulls-card_ht7dg9.webp',
-    overview: 'Prayagraj (formerly Allahabad) is home to the Triveni Sangam, the sacred confluence of three rivers: the Ganges, the Yamuna, and the mythical Saraswati. It is a site of immense spiritual importance in Hinduism. A bath here is believed to wash away all sins and free a person from the cycle of rebirth. It is the site of the historic Kumbh Mela.',
-    officialInfo: 'Boats are required to reach the exact point of confluence. The site is open year-round, but water levels fluctuate depending on the season. The Bade Hanuman Temple (Leti Hanuman Ji) is located nearby and is highly revered.',
-    itinerary: [
-      { title: 'Boat to Sangam', desc: 'Board a private boat chartered by Varanasi SN Tour & Travels to navigate to the exact Triveni confluence.' },
-      { title: 'Holy Snan', desc: 'Perform the sacred bath (snan) and conduct personal pujas on the floating platforms.' },
-      { title: 'Sacred Tour', desc: 'Visit the unique reclining Bade Hanuman Ji temple and view the historic Allahabad Fort from the river.' }
-    ]
-  },
-  {
-    id: 6,
-    duration: 'Sacred Tour',
-    title: 'Vindhyachal Darshan & Trikon Parikrama',
-    tag: 'Shakti Peeth',
-    price: 'Enquire',
-    features: ['Maa Vindhyavasini Darshan', 'Ashtabhuja Temple', 'Kali Khoh Temple', 'Sita Samahit Sthal Excursion'],
-    link: '/package/6',
-    imageUrl: 'https://res.cloudinary.com/dz8whxcuk/image/upload/v1780826392/Vindhyavasini_mata_dz7l4p.jpg',
-    overview: 'Vindhyachal is a prominent Hindu pilgrimage town in the Mirzapur district of Uttar Pradesh. It is widely known for its sacred temples and the ritual of Trikon Parikrama (the sacred triangular circuit). The primary destination is the Maa Vindhyavasini Temple, a revered Shakti Peeth dedicated to Goddess Vindhyavasini, an incarnation of Durga.',
-    officialInfo: 'The Trikon Parikrama consists of visiting three main temples: Maa Vindhyavasini, Ashtabhuja (dedicated to Goddess Saraswati), and Kali Khoh (a cave temple dedicated to Goddess Kali). Visitors also often include an excursion to Sita Samahit Sthal (Sitamarhi), located about 50 km away, which is the legendary site where Mother Sita is believed to have descended into the earth.',
-    itinerary: [
-      { title: 'Arrival & Darshan', desc: 'Arrive in Vindhyachal. VIP darshan of Maa Vindhyavasini at the main temple on the banks of the Ganges.' },
-      { title: 'Trikon Parikrama', desc: 'Proceed for the sacred Trikon Parikrama, visiting the hilltop Ashtabhuja Temple and the Kali Khoh cave temple.' },
-      { title: 'Sita Samahit Sthal', desc: 'Excursion to Sitamarhi in Bhadohi to see the 108-foot Hanuman statue and the sacred site of Sita Mata.' }
-    ]
-  }
-];
 
 exports.createEnquiry = async (req, res) => {
   try {
@@ -131,19 +26,7 @@ exports.createEnquiry = async (req, res) => {
   }
 };
 
-exports.getPackages = async (req, res) => {
-  res.status(200).json(packages);
-};
 
-exports.getPackageById = async (req, res) => {
-  const packageId = parseInt(req.params.id);
-  const pkg = packages.find(p => p.id === packageId);
-  if (pkg) {
-    res.status(200).json(pkg);
-  } else {
-    res.status(404).json({ message: 'Package not found' });
-  }
-};
 
 exports.getStats = async (req, res) => {
   try {

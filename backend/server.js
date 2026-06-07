@@ -5,6 +5,9 @@ const cors = require('cors');
 const apiRoutes = require('./routes/apiRoutes');
 const guideRoutes = require('./routes/guideRoutes');
 const publicGuideRoutes = require('./routes/publicGuideRoutes');
+const packageRoutes = require('./routes/packageRoutes');
+const routeManagementRoutes = require('./routes/routeManagementRoutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
 
 const app = express();
 
@@ -40,6 +43,9 @@ mongoose.connect(mongoUri)
 
 app.use('/api/public', publicGuideRoutes);
 app.use('/api/guide', guideRoutes);
+app.use('/api/packages', packageRoutes);
+app.use('/api/route-management', routeManagementRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 app.use('/api', apiRoutes);
 
 // Global Error Handler (catches Clerk Unauthenticated errors)
