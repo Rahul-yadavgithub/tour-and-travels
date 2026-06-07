@@ -10,14 +10,15 @@ const packages = [
     title: 'Kashi Vishwanath Darshan',
     tag: 'VIP Support',
     price: 'Enquire',
-    features: ['Hassle-free darshan arrangement', 'Baba Vishwanath Ji Darshan', 'Safe & Trusted Guide', 'Experienced & Professional Guide'],
+    features: ['Kashi Vishwanath VIP Darshan', 'Durgakund & Sankat Mochan', 'BHU Vishwanath Temple', 'Ram Nagar & Swarved Mandir'],
     link: '/package/1',
     imageUrl: 'https://varanasiayodhya.com/images/varanasi-munshi-ghat-orange-flags-pilgrims-card.webp',
     overview: 'The Kashi Vishwanath Temple is one of the most famous Hindu temples dedicated to Lord Shiva. It is located in Varanasi, Uttar Pradesh, India. The temple stands on the western bank of the holy river Ganga, and is one of the twelve Jyotirlingas, the holiest of Shiva temples. The main deity is known by the name Shri Vishwanath and Vishweshwara literally meaning "Lord of the Universe". Varanasi was called Kashi in ancient times, and hence the temple is popularly called Kashi Vishwanath Temple.',
     officialInfo: 'The current structure was built on an adjacent site by the Maratha ruler, Ahilya Bai Holkar of Indore in 1780. Since 1983, the temple has been managed by the Government of Uttar Pradesh under the Shri Kashi Vishwanath Temple Act.',
     itinerary: [
       { title: 'Arrival & Setup', desc: 'Meet with SN Tour And Travels representative at designated point. Briefing about temple protocols and dress code.' },
-      { title: 'VIP Darshan', desc: 'Skip the regular lines with our hassle-free darshan arrangement. Guided entry to the sanctum sanctorum.' },
+      { title: 'VIP Darshan', desc: 'Skip the regular lines with our hassle-free darshan arrangement. Guided entry to the sanctum sanctorum of Kashi Vishwanath.' },
+      { title: 'City Temples Tour', desc: 'Guided visit to Durgakund, Sankat Mochan Hanuman Temple, Ram Nagar, BHU Vishwanath Temple, and the spectacular Swarved Mandir.' },
       { title: 'Rituals & Departure', desc: 'Perform Jalabhishek and other sacred rituals under expert guidance. Safe drop-off back to your hotel.' }
     ]
   },

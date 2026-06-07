@@ -26,6 +26,11 @@ const moderateReview = async (req, res) => {
 
     const review = req.resource; // From guideOwnership middleware
 
+    if (status === 'rejected') {
+      await review.deleteOne();
+      return res.json({ message: "Review deleted successfully", _id: review._id });
+    }
+
     review.status = status;
     review.moderatedAt = Date.now();
     

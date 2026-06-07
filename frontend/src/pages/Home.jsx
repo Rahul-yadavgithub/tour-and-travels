@@ -23,6 +23,27 @@ export default function Home() {
   const [publicPhotos, setPublicPhotos] = useState([]);
   const navigate = useNavigate();
 
+  const dragGallery = useRef({ isDragging: false, startX: 0, scrollLeft: 0 });
+  const dragReviews = useRef({ isDragging: false, startX: 0, scrollLeft: 0 });
+
+  const handleDragStart = (e, ref, dragState) => {
+    dragState.current.isDragging = true;
+    dragState.current.startX = e.pageX - ref.current.offsetLeft;
+    dragState.current.scrollLeft = ref.current.scrollLeft;
+  };
+
+  const handleDragEnd = (dragState) => {
+    dragState.current.isDragging = false;
+  };
+
+  const handleDragMove = (e, ref, dragState) => {
+    if (!dragState.current.isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - ref.current.offsetLeft;
+    const walk = (x - dragState.current.startX) * 2; // Scroll speed multiplier
+    ref.current.scrollLeft = dragState.current.scrollLeft - walk;
+  };
+
   const reviews = [
     {
       text: "SN Tour And Travels provided a truly exceptional experience. Their polite and friendly behavior made our family feel completely safe. They arranged VIP darshan at Kashi Vishwanath effortlessly. Highly recommended!",
@@ -290,7 +311,16 @@ export default function Home() {
               className="flex w-full overflow-x-auto hide-scrollbar gap-6 md:gap-8 px-4 py-2 cursor-grab active:cursor-grabbing"
               ref={galleryRef}
               onMouseEnter={() => setIsGalleryPaused(true)}
-              onMouseLeave={() => setIsGalleryPaused(false)}
+              onMouseLeave={() => {
+                setIsGalleryPaused(false);
+                handleDragEnd(dragGallery);
+              }}
+              onMouseDown={(e) => {
+                setIsGalleryPaused(true);
+                handleDragStart(e, galleryRef, dragGallery);
+              }}
+              onMouseUp={() => handleDragEnd(dragGallery)}
+              onMouseMove={(e) => handleDragMove(e, galleryRef, dragGallery)}
               onTouchStart={() => setIsGalleryPaused(true)}
               onTouchEnd={() => setIsGalleryPaused(false)}
             >
@@ -347,7 +377,16 @@ export default function Home() {
               className="flex w-full overflow-x-auto hide-scrollbar gap-6 md:gap-8 px-4 py-4 cursor-grab active:cursor-grabbing"
               ref={reviewsRef}
               onMouseEnter={() => setIsReviewsPaused(true)}
-              onMouseLeave={() => setIsReviewsPaused(false)}
+              onMouseLeave={() => {
+                setIsReviewsPaused(false);
+                handleDragEnd(dragReviews);
+              }}
+              onMouseDown={(e) => {
+                setIsReviewsPaused(true);
+                handleDragStart(e, reviewsRef, dragReviews);
+              }}
+              onMouseUp={() => handleDragEnd(dragReviews)}
+              onMouseMove={(e) => handleDragMove(e, reviewsRef, dragReviews)}
               onTouchStart={() => setIsReviewsPaused(true)}
               onTouchEnd={() => setIsReviewsPaused(false)}
             >

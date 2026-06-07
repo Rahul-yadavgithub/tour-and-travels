@@ -51,11 +51,15 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="text-ivory/80 text-sm flex items-start gap-3">
                 <span className="text-gold mt-0.5">📍</span>
-                <span>Varanasi, Uttar Pradesh<br/>India - 221001</span>
+                <span>Mahmoorganj, Nirala Nagar<br/>Lane No.3, Varanasi<br/>UP, India - 221010</span>
               </li>
-              <li className="text-ivory/80 text-sm flex items-center gap-3">
-                <span className="text-gold">📞</span> 
-                <a href="tel:9120073105" className="hover:text-gold transition-colors font-medium">+91 9120073105</a>
+              <li className="text-ivory/80 text-sm flex flex-col gap-1.5 ml-8">
+                <div className="flex items-center gap-3 -ml-8">
+                  <span className="text-gold">📞</span> 
+                  <a href="tel:9120073105" className="hover:text-gold transition-colors font-medium">+91 9120073105</a>
+                </div>
+                <a href="tel:9335487124" className="hover:text-gold transition-colors font-medium">+91 9335487124</a>
+                <a href="tel:8707482524" className="hover:text-gold transition-colors font-medium">+91 8707482524</a>
               </li>
               <li className="text-ivory/80 text-sm flex items-center gap-3">
                 <span className="text-gold">✉️</span> 

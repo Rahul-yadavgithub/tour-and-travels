@@ -6,7 +6,7 @@ const Reviews = () => {
   const { getReviews, approveReview, rejectReview } = useReviewsApi();
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState('all'); // all, pending, approved, rejected
+  const [filter, setFilter] = useState('all'); // all, pending, approved
 
   const fetchReviews = async () => {
     try {
@@ -53,7 +53,7 @@ const Reviews = () => {
         </div>
         
         <div className="flex bg-zinc-100 p-1 rounded-lg border border-zinc-200 w-fit">
-          {['all', 'pending', 'approved', 'rejected'].map(f => (
+          {['all', 'pending', 'approved'].map(f => (
             <button
               key={f}
               onClick={() => setFilter(f)}
@@ -107,6 +107,14 @@ const Reviews = () => {
                   </button>
                   <button onClick={() => handleApprove(review._id)} className="btn btn-primary bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-500/20">
                     Approve
+                  </button>
+                </div>
+              )}
+
+              {review.status === 'approved' && (
+                <div className="mt-auto pt-4 border-t border-zinc-100">
+                  <button onClick={() => handleReject(review._id)} className="w-full btn btn-secondary text-red-600 hover:text-red-700 hover:bg-red-50 hover:border-red-200">
+                    Delete Review
                   </button>
                 </div>
               )}
