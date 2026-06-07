@@ -81,13 +81,30 @@ const packages = [
     price: 'Enquire',
     features: ['Triveni Sangam bath', 'Bade Hanuman Ji', 'Visit to sacred places', 'Excellent Service'],
     link: '/package/5',
-    imageUrl: 'https://varanasiayodhya.com/images/prayagraj-triveni-sangam-boat-seagulls-card.webp',
+    imageUrl: 'https://res.cloudinary.com/dz8whxcuk/image/upload/v1780825660/prayagraj-triveni-sangam-boat-seagulls-card_ht7dg9.webp',
     overview: 'Prayagraj (formerly Allahabad) is home to the Triveni Sangam, the sacred confluence of three rivers: the Ganges, the Yamuna, and the mythical Saraswati. It is a site of immense spiritual importance in Hinduism. A bath here is believed to wash away all sins and free a person from the cycle of rebirth. It is the site of the historic Kumbh Mela.',
     officialInfo: 'Boats are required to reach the exact point of confluence. The site is open year-round, but water levels fluctuate depending on the season. The Bade Hanuman Temple (Leti Hanuman Ji) is located nearby and is highly revered.',
     itinerary: [
       { title: 'Boat to Sangam', desc: 'Board a private boat chartered by Varanasi SN Tour & Travels to navigate to the exact Triveni confluence.' },
       { title: 'Holy Snan', desc: 'Perform the sacred bath (snan) and conduct personal pujas on the floating platforms.' },
       { title: 'Sacred Tour', desc: 'Visit the unique reclining Bade Hanuman Ji temple and view the historic Allahabad Fort from the river.' }
+    ]
+  },
+  {
+    id: 6,
+    duration: 'Sacred Tour',
+    title: 'Vindhyachal Darshan & Trikon Parikrama',
+    tag: 'Shakti Peeth',
+    price: 'Enquire',
+    features: ['Maa Vindhyavasini Darshan', 'Ashtabhuja Temple', 'Kali Khoh Temple', 'Sita Samahit Sthal Excursion'],
+    link: '/package/6',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Vindhyavasini_temple%2C_Vindhyachal.jpg/800px-Vindhyavasini_temple%2C_Vindhyachal.jpg',
+    overview: 'Vindhyachal is a prominent Hindu pilgrimage town in the Mirzapur district of Uttar Pradesh. It is widely known for its sacred temples and the ritual of Trikon Parikrama (the sacred triangular circuit). The primary destination is the Maa Vindhyavasini Temple, a revered Shakti Peeth dedicated to Goddess Vindhyavasini, an incarnation of Durga.',
+    officialInfo: 'The Trikon Parikrama consists of visiting three main temples: Maa Vindhyavasini, Ashtabhuja (dedicated to Goddess Saraswati), and Kali Khoh (a cave temple dedicated to Goddess Kali). Visitors also often include an excursion to Sita Samahit Sthal (Sitamarhi), located about 50 km away, which is the legendary site where Mother Sita is believed to have descended into the earth.',
+    itinerary: [
+      { title: 'Arrival & Darshan', desc: 'Arrive in Vindhyachal. VIP darshan of Maa Vindhyavasini at the main temple on the banks of the Ganges.' },
+      { title: 'Trikon Parikrama', desc: 'Proceed for the sacred Trikon Parikrama, visiting the hilltop Ashtabhuja Temple and the Kali Khoh cave temple.' },
+      { title: 'Sita Samahit Sthal', desc: 'Excursion to Sitamarhi in Bhadohi to see the 108-foot Hanuman statue and the sacred site of Sita Mata.' }
     ]
   }
 ];

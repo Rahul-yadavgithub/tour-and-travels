@@ -46,22 +46,22 @@ export default function Home() {
 
   const reviews = [
     {
-      text: "SN Tour And Travels provided a truly exceptional experience. Their polite and friendly behavior made our family feel completely safe. They arranged VIP darshan at Kashi Vishwanath effortlessly. Highly recommended!",
+      text: "Varanasi SN Tour & Travels provided a truly exceptional experience. Their polite and friendly behavior made our family feel completely safe. They arranged VIP darshan at Kashi Vishwanath effortlessly. Highly recommended!",
       name: "Rajesh Sharma",
       from: "Mumbai"
     },
     {
-      text: "The Gaya Pind Daan was perfectly organized. SN Tour And Travels ensured all rituals were complete without any hassle. The hotels they booked were comfortable and the pricing was very reasonable.",
+      text: "The Gaya Pind Daan was perfectly organized. Varanasi SN Tour & Travels ensured all rituals were complete without any hassle. The hotels they booked were comfortable and the pricing was very reasonable.",
       name: "Suresh Kumar",
       from: "Delhi"
     },
     {
-      text: "We went to Ayodhya Ram Mandir and Prayagraj Sangam. SN Tour And Travels' knowledge of the sacred places is profound. Their dedication to 100% customer satisfaction is real.",
+      text: "We went to Ayodhya Ram Mandir and Prayagraj Sangam. Varanasi SN Tour & Travels' knowledge of the sacred places is profound. Their dedication to 100% customer satisfaction is real.",
       name: "Anjali Gupta",
       from: "Bangalore"
     },
     {
-      text: "Our trip to Kashi was magical thanks to SN Tour And Travels. They know all the hidden gems and the best times to visit the ghats. The boat ride during Ganga Aarti was unforgettable.",
+      text: "Our trip to Kashi was magical thanks to Varanasi SN Tour & Travels. They know all the hidden gems and the best times to visit the ghats. The boat ride during Ganga Aarti was unforgettable.",
       name: "Priya Patel",
       from: "Ahmedabad"
     },
@@ -179,12 +179,12 @@ export default function Home() {
             </div>
             
             <h1 className="font-serif text-white text-4xl md:text-5xl lg:text-[4rem] font-bold leading-[1.1] mb-6 drop-shadow-md">
-              SN TOUR & TRAVELS<br />
+              VARANASI SN TOUR & TRAVELS<br />
               <span className="text-gold font-medium">GUIDE SERVICES</span>
             </h1>
             
             <p className="text-white/90 text-base md:text-xl font-medium mb-8 max-w-xl drop-shadow-md">
-              KASHI | PRAYAGRAJ | GAYA | AYODHYA<br />
+              KASHI | PRAYAGRAJ | GAYA | AYODHYA | VINDHYACHAL TO ALL INDIA<br />
               Travel with Joy & Happiness everywhere where is needed
             </p>
             
@@ -291,12 +291,12 @@ export default function Home() {
       </section>
 
 
-      {/* SN Tour And Travels Work Showcase / Portfolio */}
+      {/* Varanasi SN Tour & Travels Work Showcase / Portfolio */}
       <section className="bg-charcoal py-20 md:py-32 overflow-hidden relative">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gold via-charcoal to-charcoal"></div>
         <div className="max-w-[1200px] mx-auto px-6 md:px-8 relative z-10">
           <div className="text-center mb-16">
-            <p className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">Journey with SN Tour And Travels</p>
+            <p className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">Journey with Varanasi SN Tour & Travels</p>
             <h2 className="font-serif text-3xl md:text-5xl font-light text-ivory">Glimpses of Divine Experiences</h2>
             <p className="text-ivory/60 mt-6 max-w-2xl mx-auto">Witness the spiritual journeys and memorable moments captured by our pilgrims. A visual testament to our commitment to safe and fulfilling yatras.</p>
           </div>
@@ -427,10 +427,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SN Tour And Travels Impact / Live Stats Portfolio */}
+      {/* Varanasi SN Tour & Travels Impact / Live Stats Portfolio */}
       <section className="bg-charcoal py-16 text-ivory text-center">
         <div className="max-w-[1200px] mx-auto px-6 md:px-8">
-          <p className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">SN Tour And Travels Portfolio</p>
+          <p className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">Varanasi SN Tour & Travels Portfolio</p>
           <h2 className="font-serif text-3xl md:text-4xl font-light mb-12">Our Growing Spiritual Family</h2>
           
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto divide-y sm:divide-y-0 sm:divide-x divide-white/10">

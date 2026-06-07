@@ -29,7 +29,7 @@ export default function Navbar() {
       <nav className="max-w-[1200px] mx-auto px-6 md:px-8 flex items-center justify-between py-3 md:py-4 gap-4">
         <Link className="inline-flex leading-none flex-col items-center" to="/">
           <span className={`font-serif font-light text-[26px] leading-none whitespace-nowrap ${isLightText ? 'text-ivory' : 'text-charcoal'}`} style={{ letterSpacing: '-0.005em' }}>
-            SN <span className="text-gold">Tour & Travels</span>
+            Varanasi SN <span className="text-gold">Tour & Travels</span>
           </span>
           <span className="block h-[2px] bg-gold w-20 mt-2"></span>
           <span className={`text-[9px] font-medium tracking-[0.28em] mt-1.5 uppercase text-center ${isLightText ? 'text-ivory/40' : 'text-charcoal/40'}`}>Tourist Services</span>

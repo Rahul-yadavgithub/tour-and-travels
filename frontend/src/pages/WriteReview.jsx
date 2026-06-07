@@ -41,7 +41,7 @@ export default function WriteReview() {
         <div className="mb-10 text-center">
           <p className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-2">Share Your Experience</p>
           <h1 className="font-serif text-4xl font-light text-charcoal">Write a Review</h1>
-          <p className="text-charcoal-400 mt-4">We value your feedback. Please share your spiritual journey experience with SN Tour And Travels.</p>
+          <p className="text-charcoal-400 mt-4">We value your feedback. Please share your spiritual journey experience with Varanasi SN Tour & Travels.</p>
         </div>
 
         {status === 'success' ? (
