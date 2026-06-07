@@ -26,7 +26,7 @@ export default function TourPackages() {
 
   return (
     <div className="bg-ivory text-earth pt-32 pb-20 relative min-h-screen">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-8">
+      <div className="max-w-[1536px] mx-auto px-6 md:px-10 lg:px-16">
         <div className="mb-12">
           <p className="font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">Explore Our Routes</p>
           <h1 className="font-serif text-4xl md:text-5xl font-light leading-[1.15]">Tour Packages</h1>
@@ -134,7 +134,7 @@ export default function TourPackages() {
             <div className="relative bg-black h-[40vh] md:h-[50vh] min-h-[300px] overflow-hidden flex-shrink-0 rounded-t-[2rem]">
               <img src={selectedPackage.imageUrl || (selectedPackage.imageUrls && selectedPackage.imageUrls[0])} alt={selectedPackage.title} className="w-full h-full object-cover opacity-60" />
               <div className="absolute inset-0 bg-gradient-to-t from-earth via-earth/30 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 max-w-[1200px] mx-auto right-0">
+              <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 max-w-[1536px] mx-auto right-0">
                 <span className="text-gold font-sans text-xs font-semibold tracking-[0.2em] uppercase mb-3 block drop-shadow-md">{selectedPackage.tag}</span>
                 <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-ivory font-light leading-[1.1] drop-shadow-lg">{selectedPackage.title}</h1>
                 <p className="text-ivory/80 mt-4 text-lg md:text-xl font-light">{selectedPackage.duration}</p>

@@ -38,7 +38,7 @@ export default function AdminReviews() {
 
   return (
     <div className="pt-24 pb-20 min-h-screen bg-ivory">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-8">
+      <div className="max-w-[1536px] mx-auto px-6 md:px-10 lg:px-16">
         <div className="mb-10">
           <h1 className="font-serif text-4xl font-light text-charcoal">Admin Dashboard</h1>
           <p className="text-charcoal-400 mt-2">Manage Unapproved Reviews</p>

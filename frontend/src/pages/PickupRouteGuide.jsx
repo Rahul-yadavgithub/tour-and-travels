@@ -56,7 +56,7 @@ export default function PickupRouteGuide() {
       {/* Header */}
       <div className="bg-black text-ivory py-16 px-6 md:px-12 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
-        <div className="max-w-[1200px] mx-auto relative z-10 text-center">
+        <div className="max-w-[1536px] mx-auto relative z-10 text-center">
           <span className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-2 block">Premium Travel Experience</span>
           <h1 className="font-serif text-4xl md:text-5xl font-light mb-4">Pickup & Route Guide</h1>
           <p className="text-ivory/70 max-w-2xl mx-auto">Explore our available pickup locations and preview your immersive spiritual journey route before you book.</p>

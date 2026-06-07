@@ -53,7 +53,7 @@ export default function CarRentals() {
 
   return (
     <div className="min-h-screen bg-ivory font-sans text-earth pt-32 pb-20">
-      <div className="max-w-[1200px] mx-auto px-6 md:px-8">
+      <div className="max-w-[1536px] mx-auto px-6 md:px-10 lg:px-16">
         <div className="mb-16">
           <p className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">Transportation Services</p>
           <h1 className="font-serif text-4xl md:text-6xl font-light mb-6">Fleet & Vehicle Specifications</h1>
