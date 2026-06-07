@@ -54,7 +54,7 @@ export default function PackageDetail() {
     <div className="bg-ivory text-earth pt-20">
       {/* Premium Hybrid Hero Section with Motion */}
       <div className="px-4 md:px-8 mt-6">
-        <div className="relative w-full h-[450px] md:h-[600px] rounded-[32px] overflow-hidden shadow-2xl mx-auto max-w-[1400px] bg-black">
+        <div className="relative w-full h-[450px] md:h-[600px] rounded-[32px] overflow-hidden shadow-2xl mx-auto w-full bg-black">
           
           {/* 1. Blurred background image layer (Cinematic Slow Zoom) */}
           <motion.img 
@@ -84,7 +84,7 @@ export default function PackageDetail() {
 
           {/* 4. Hero content layer (Fade up stagger) */}
           <div className="absolute inset-0 z-30 flex flex-col justify-end p-8 md:p-16">
-            <div className="max-w-[1536px] w-full mx-auto">
+            <div className="w-full ">
               <motion.span 
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -115,7 +115,7 @@ export default function PackageDetail() {
         </div>
       </div>
 
-      <div className="max-w-[1536px] mx-auto px-6 md:px-10 lg:px-16 py-16 grid grid-cols-1 md:grid-cols-12 gap-12">
+      <div className="w-full px-6 md:px-10 lg:px-16 py-16 grid grid-cols-1 md:grid-cols-12 gap-12">
         <div className="md:col-span-8">
           <div className="bg-white p-8 rounded-2xl border border-earth/5 shadow-md hover:shadow-lg transition-shadow mb-12">
             <h2 className="font-serif text-3xl mb-4 border-b border-earth/10 pb-4 flex items-center gap-3">

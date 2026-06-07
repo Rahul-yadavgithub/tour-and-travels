@@ -26,7 +26,7 @@ export default function TourPackages() {
 
   return (
     <div className="bg-ivory text-earth pt-32 pb-20 relative min-h-screen">
-      <div className="max-w-[1536px] mx-auto px-6 md:px-10 lg:px-16">
+      <div className="w-full px-6 md:px-10 lg:px-16">
         <div className="mb-12">
           <p className="font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">Explore Our Routes</p>
           <h1 className="font-serif text-4xl md:text-5xl font-light leading-[1.15]">Tour Packages</h1>
@@ -119,7 +119,7 @@ export default function TourPackages() {
           ></div>
           
           {/* Modal Container */}
-          <div className="relative bg-ivory w-[95vw] h-[95vh] max-w-[1600px] overflow-y-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] rounded-[2rem] shadow-2xl flex flex-col z-10 animate-in fade-in zoom-in duration-300">
+          <div className="relative bg-ivory w-[95vw] h-[95vh] w-full overflow-y-auto scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] rounded-[2rem] shadow-2xl flex flex-col z-10 animate-in fade-in zoom-in duration-300">
             {/* Close Button */}
             <button 
               onClick={() => setSelectedPackage(null)}
@@ -134,7 +134,7 @@ export default function TourPackages() {
             <div className="relative bg-black h-[40vh] md:h-[50vh] min-h-[300px] overflow-hidden flex-shrink-0 rounded-t-[2rem]">
               <img src={selectedPackage.imageUrl || (selectedPackage.imageUrls && selectedPackage.imageUrls[0])} alt={selectedPackage.title} className="w-full h-full object-cover opacity-60" />
               <div className="absolute inset-0 bg-gradient-to-t from-earth via-earth/30 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 max-w-[1536px] mx-auto right-0">
+              <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 w-full right-0">
                 <span className="text-gold font-sans text-xs font-semibold tracking-[0.2em] uppercase mb-3 block drop-shadow-md">{selectedPackage.tag}</span>
                 <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-ivory font-light leading-[1.1] drop-shadow-lg">{selectedPackage.title}</h1>
                 <p className="text-ivory/80 mt-4 text-lg md:text-xl font-light">{selectedPackage.duration}</p>
@@ -142,7 +142,7 @@ export default function TourPackages() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-8 md:p-16 grid grid-cols-1 md:grid-cols-12 gap-12 max-w-[1400px] mx-auto w-full">
+            <div className="p-8 md:p-16 grid grid-cols-1 md:grid-cols-12 gap-12 w-full w-full">
               <div className="md:col-span-8 space-y-12">
                 {selectedPackage.officialInfo && (
                   <div className="bg-white p-6 rounded-xl border border-earth/5 shadow-sm">

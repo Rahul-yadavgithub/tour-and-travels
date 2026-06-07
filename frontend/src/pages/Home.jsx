@@ -170,7 +170,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-black/40 pointer-events-none"></div>
         </div>
         
-        <div className="relative z-10 w-full max-w-[1536px] mx-auto px-6 md:px-10 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div className="relative z-10 w-full px-6 md:px-10 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <div className="lg:col-span-7">
             <div className="mb-6 space-y-2">
               <p className="text-gold bg-white/10 px-3 py-1 rounded-full inline-block font-sans text-[11px] font-bold tracking-widest uppercase backdrop-blur-sm">Experienced & Professional Guide</p>
@@ -231,7 +231,7 @@ export default function Home() {
 
       {/* Stats Section */}
       <section className="bg-[#262626] border-y border-white/10 py-6">
-        <div className="max-w-[1536px] mx-auto px-6 md:px-10 lg:px-16 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-4">
+        <div className="w-full px-6 md:px-10 lg:px-16 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-4">
           <div className="flex items-center gap-3">
             <span className="text-2xl">🚗</span>
             <span className="text-ivory/75 text-[11px] md:text-xs leading-tight"><span className="text-ivory font-medium">Local Sightseeing</span><br />Comfortable Travel</span>
@@ -253,7 +253,7 @@ export default function Home() {
 
       {/* The Four Sacred Cities */}
       <section className="bg-ivory py-20 md:py-28 relative">
-        <div className="max-w-[1536px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
+        <div className="w-full px-6 md:px-10 lg:px-16 relative z-10">
           <div className="mb-12 max-w-3xl">
             <p className="font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">Our Main Service Areas</p>
             <h2 className="font-serif text-3xl md:text-5xl font-light leading-[1.15]">Kashi. Prayagraj. Gaya.<br /><span className="italic">Ayodhya.</span></h2>
@@ -316,7 +316,7 @@ export default function Home() {
       {/* Varanasi SN Tour & Travels Work Showcase / Portfolio */}
       <section className="bg-charcoal py-20 md:py-32 overflow-hidden relative">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gold via-charcoal to-charcoal"></div>
-        <div className="max-w-[1536px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
+        <div className="w-full px-6 md:px-10 lg:px-16 relative z-10">
           <div className="text-center mb-16">
             <p className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">Journey with Varanasi SN Tour & Travels</p>
             <h2 className="font-serif text-3xl md:text-5xl font-light text-ivory">Glimpses of Divine Experiences</h2>
@@ -379,7 +379,7 @@ export default function Home() {
 
       {/* Customer Reviews Section */}
       <section className="bg-ivory py-20 md:py-28 border-t border-charcoal/10 relative">
-        <div className="max-w-[1536px] mx-auto px-6 md:px-10 lg:px-16 relative z-10">
+        <div className="w-full px-6 md:px-10 lg:px-16 relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-center mb-12">
             <div className="text-center md:text-left mb-6 md:mb-0">
               <p className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">Testimonials</p>
@@ -451,7 +451,7 @@ export default function Home() {
 
       {/* Varanasi SN Tour & Travels Impact / Live Stats Portfolio */}
       <section className="bg-charcoal py-16 text-ivory text-center">
-        <div className="max-w-[1536px] mx-auto px-6 md:px-10 lg:px-16">
+        <div className="w-full px-6 md:px-10 lg:px-16">
           <p className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">Varanasi SN Tour & Travels Portfolio</p>
           <h2 className="font-serif text-3xl md:text-4xl font-light mb-12">Our Growing Spiritual Family</h2>
           

@@ -37,7 +37,7 @@ export default function WriteReview() {
 
   return (
     <div className="pt-32 pb-20 min-h-screen bg-ivory">
-      <div className="max-w-[1536px] mx-auto px-6 md:px-10 lg:px-16 max-w-2xl mx-auto">
+      <div className="w-full px-6 md:px-10 lg:px-16 max-w-2xl mx-auto">
         <div className="mb-10 text-center">
           <p className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-2">Share Your Experience</p>
           <h1 className="font-serif text-4xl font-light text-charcoal">Write a Review</h1>

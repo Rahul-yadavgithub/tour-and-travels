@@ -26,7 +26,7 @@ export default function Navbar() {
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${headerBgClass}`}>
 
-      <nav className="max-w-[1536px] mx-auto px-6 md:px-10 lg:px-16 flex items-center justify-between py-3 md:py-4 gap-4">
+      <nav className="w-full px-6 md:px-10 lg:px-16 flex items-center justify-between py-3 md:py-4 gap-4">
         <Link className="inline-flex leading-none flex-col items-center" to="/">
           <span className={`font-serif font-light text-[26px] leading-none whitespace-nowrap ${isLightText ? 'text-ivory' : 'text-charcoal'}`} style={{ letterSpacing: '-0.005em' }}>
             Varanasi SN <span className="text-gold">Tour & Travels</span>
