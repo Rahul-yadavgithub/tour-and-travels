@@ -26,7 +26,7 @@ export default function TourPackages() {
 
   return (
     <div className="bg-ivory text-earth pt-32 pb-20 relative min-h-screen">
-      <div className="w-full px-6 md:px-10 lg:px-16">
+      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16">
         <div className="mb-12">
           <p className="font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">Explore Our Routes</p>
           <h1 className="font-serif text-4xl md:text-5xl font-light leading-[1.15]">Tour Packages</h1>

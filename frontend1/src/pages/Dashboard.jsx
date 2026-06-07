@@ -71,7 +71,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500 p-6 max-w-7xl mx-auto">
+    <div className="space-y-8 animate-in fade-in duration-500 p-6 w-full">
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-zinc-900">Welcome back, {user?.firstName || 'Admin'}</h1>

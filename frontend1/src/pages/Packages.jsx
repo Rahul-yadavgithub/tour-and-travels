@@ -135,7 +135,7 @@ export default function Packages() {
   if (loading) return <div className="p-8 text-zinc-500">Loading premium package data...</div>;
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-8">
+    <div className="p-8 w-full space-y-8">
       <div className="flex justify-between items-end mb-10">
         <div>
           <h1 className="text-3xl font-serif text-zinc-900 tracking-tight mb-2">Package Management</h1>

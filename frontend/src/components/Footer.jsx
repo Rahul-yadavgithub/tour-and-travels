@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-charcoal text-ivory py-20 border-t-4 border-gold relative overflow-hidden">
       
-      <div className="w-full px-6 md:px-10 lg:px-16 relative z-10">
+      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           
           {/* Brand & About */}

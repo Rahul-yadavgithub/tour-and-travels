@@ -71,7 +71,7 @@ export default function Enquiries() {
   };
 
   return (
-    <div className="p-6 md:p-8 max-w-7xl mx-auto">
+    <div className="p-6 md:p-8 w-full">
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-zinc-900">Customer Enquiries</h1>
         <p className="text-zinc-500 mt-1">Manage leads and booking requests from the website.</p>

@@ -26,7 +26,7 @@ export default function Navbar() {
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${headerBgClass}`}>
 
-      <nav className="w-full px-6 md:px-10 lg:px-16 flex items-center justify-between py-3 md:py-4 gap-4">
+      <nav className="w-full px-4 sm:px-6 md:px-10 lg:px-16 flex items-center justify-between py-3 md:py-4 gap-4">
         <Link className="inline-flex leading-none flex-col items-center" to="/">
           <span className={`font-serif font-light text-[26px] leading-none whitespace-nowrap ${isLightText ? 'text-ivory' : 'text-charcoal'}`} style={{ letterSpacing: '-0.005em' }}>
             Varanasi SN <span className="text-gold">Tour & Travels</span>
@@ -72,33 +72,51 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu Dropdown */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-charcoal border-t border-white/10 px-4 py-4 space-y-4 shadow-xl">
-          <Link onClick={() => setIsMobileMenuOpen(false)} className={`block font-sans text-xs font-semibold tracking-[0.15em] uppercase ${location.pathname === '/' ? 'text-gold' : 'text-ivory'}`} to="/">Home</Link>
-          <Link onClick={() => setIsMobileMenuOpen(false)} className={`block font-sans text-xs font-semibold tracking-[0.15em] uppercase ${location.pathname === '/tour-packages' ? 'text-gold' : 'text-ivory'}`} to="/tour-packages">Tour Packages</Link>
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        onClick={() => setIsMobileMenuOpen(false)}
+      ></div>
+
+      {/* Mobile Menu Drawer */}
+      <div className={`md:hidden fixed top-0 right-0 h-screen w-[80vw] max-w-sm bg-charcoal z-[60] shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className="flex items-center justify-between p-6 border-b border-white/10">
+          <span className="text-gold font-serif text-xl tracking-wide">Menu</span>
+          <button onClick={() => setIsMobileMenuOpen(false)} className="text-white/70 hover:text-white p-2">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        
+        <div className="flex-1 overflow-y-auto py-6 px-6 space-y-6">
+          <Link onClick={() => setIsMobileMenuOpen(false)} className={`block font-sans text-sm font-semibold tracking-[0.15em] uppercase ${location.pathname === '/' ? 'text-gold' : 'text-ivory'}`} to="/">Home</Link>
+          <Link onClick={() => setIsMobileMenuOpen(false)} className={`block font-sans text-sm font-semibold tracking-[0.15em] uppercase ${location.pathname === '/tour-packages' ? 'text-gold' : 'text-ivory'}`} to="/tour-packages">Tour Packages</Link>
+          <Link onClick={() => setIsMobileMenuOpen(false)} className={`block font-sans text-sm font-semibold tracking-[0.15em] uppercase ${location.pathname === '/pickup-route-guide' ? 'text-gold' : 'text-ivory'}`} to="/pickup-route-guide">Pickup & Route Guide</Link>
           
-          <div className="space-y-3 pl-2 border-l-2 border-white/10 overflow-hidden">
+          <div className="space-y-4 pl-3 border-l border-white/10">
             <button 
               onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)} 
-              className={`w-full flex items-center justify-between font-sans text-xs font-semibold tracking-[0.15em] uppercase transition-colors ${isMobileServicesOpen ? 'text-gold' : 'text-ivory hover:text-gold'}`}
+              className={`w-full flex items-center justify-between font-sans text-sm font-semibold tracking-[0.15em] uppercase transition-colors ${isMobileServicesOpen ? 'text-gold' : 'text-ivory hover:text-gold'}`}
             >
               Services
-              <svg className={`w-3 h-3 transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+              <svg className={`w-4 h-4 transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
             </button>
-            <div className={`space-y-3 transition-all duration-300 origin-top ${isMobileServicesOpen ? 'max-h-40 opacity-100 mt-3' : 'max-h-0 opacity-0 m-0 overflow-hidden'}`}>
+            <div className={`space-y-4 transition-all duration-300 origin-top ${isMobileServicesOpen ? 'max-h-40 opacity-100 mt-4' : 'max-h-0 opacity-0 m-0 overflow-hidden'}`}>
               <Link onClick={() => setIsMobileMenuOpen(false)} className={`block font-sans text-xs font-semibold tracking-[0.15em] uppercase pl-4 transition-colors ${location.pathname === '/car-rentals' ? 'text-gold' : 'text-ivory/75 hover:text-gold'}`} to="/car-rentals">- Car Rentals</Link>
               <Link onClick={() => setIsMobileMenuOpen(false)} className={`block font-sans text-xs font-semibold tracking-[0.15em] uppercase pl-4 transition-colors ${location.pathname === '/hotels' ? 'text-gold' : 'text-ivory/75 hover:text-gold'}`} to="/hotels">- Hotels</Link>
             </div>
           </div>
 
-
-          <Link onClick={() => setIsMobileMenuOpen(false)} className={`block font-sans text-xs font-semibold tracking-[0.15em] uppercase ${location.pathname === '/enquire-now' ? 'text-gold' : 'text-ivory'}`} to="/enquire-now">Enquire</Link>
-          <Link onClick={() => setIsMobileMenuOpen(false)} className="bg-gold text-charcoal font-bold text-sm px-6 py-3 rounded-full inline-flex items-center justify-center transition-all hover:brightness-110 active:scale-95 cursor-pointer w-full text-center mt-4" to="/enquire-now">
+          <Link onClick={() => setIsMobileMenuOpen(false)} className={`block font-sans text-sm font-semibold tracking-[0.15em] uppercase ${location.pathname === '/enquire-now' ? 'text-gold' : 'text-ivory'}`} to="/enquire-now">Enquire</Link>
+        </div>
+        
+        <div className="p-6 border-t border-white/10 bg-black/20">
+          <Link onClick={() => setIsMobileMenuOpen(false)} className="bg-gold text-charcoal font-bold text-sm px-6 py-4 rounded-full flex items-center justify-center transition-all hover:brightness-110 active:scale-95 w-full shadow-lg" to="/enquire-now">
             Get Free Quote
           </Link>
         </div>
-      )}
+      </div>
     </header>
   );
 }

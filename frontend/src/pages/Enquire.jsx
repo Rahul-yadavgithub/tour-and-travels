@@ -42,7 +42,7 @@ export default function Enquire() {
 
   return (
     <div className="bg-ivory text-earth pt-32 pb-20 min-h-screen">
-      <div className="w-full px-6 md:px-10 lg:px-16 max-w-2xl mx-auto">
+      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 max-w-2xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="font-serif text-4xl md:text-5xl font-light mb-4">Plan Your Pilgrimage</h1>
           <p className="text-earth-400">Fill out the details below to receive a free, customized itinerary within 2 hours.</p>
