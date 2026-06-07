@@ -8,13 +8,14 @@ const getClient = () => {
   return twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 };
 
-const sendSMS = async (body) => {
+const sendSMS = async (toPhone, body) => {
   const { TWILIO_PHONE_NUMBER, ADMIN_PHONE } = process.env;
   const client = getClient();
+  const targetPhone = toPhone || ADMIN_PHONE;
 
   if (!client) {
     console.log('--- MOCK SMS ---');
-    console.log(`To: ${ADMIN_PHONE}`);
+    console.log(`To: ${targetPhone}`);
     console.log(`Body: ${body}`);
     console.log('----------------');
     return;
@@ -24,36 +25,12 @@ const sendSMS = async (body) => {
     await client.messages.create({
       body: body,
       from: TWILIO_PHONE_NUMBER,
-      to: ADMIN_PHONE
+      to: targetPhone
     });
-    console.log(`SMS sent successfully to ${ADMIN_PHONE}`);
+    console.log(`SMS sent successfully to ${targetPhone}`);
   } catch (error) {
     console.error('Failed to send SMS:', error);
   }
 };
 
-const sendWhatsApp = async (body) => {
-  const { TWILIO_WHATSAPP_NUMBER, ADMIN_WHATSAPP } = process.env;
-  const client = getClient();
-
-  if (!client) {
-    console.log('--- MOCK WHATSAPP ---');
-    console.log(`To: whatsapp:${ADMIN_WHATSAPP}`);
-    console.log(`Body: ${body}`);
-    console.log('---------------------');
-    return;
-  }
-
-  try {
-    await client.messages.create({
-      body: body,
-      from: TWILIO_WHATSAPP_NUMBER,
-      to: `whatsapp:${ADMIN_WHATSAPP}`
-    });
-    console.log(`WhatsApp sent successfully to ${ADMIN_WHATSAPP}`);
-  } catch (error) {
-    console.error('Failed to send WhatsApp:', error);
-  }
-};
-
-module.exports = { sendSMS, sendWhatsApp };
+module.exports = { sendSMS };

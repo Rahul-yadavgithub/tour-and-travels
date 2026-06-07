@@ -1,5 +1,24 @@
 const { sendEmail } = require('../utils/emailProvider');
-const { sendSMS, sendWhatsApp } = require('../utils/twilioProvider');
+const { sendSMS } = require('../utils/twilioProvider');
+
+const notifyCustomerNewEnquiry = async (enquiry) => {
+  if (!enquiry.mobile) return;
+  
+  let phone = enquiry.mobile.toString().trim();
+  // Assume Indian number if no country code provided and it's 10 digits
+  if (phone.length === 10 && !phone.startsWith('+')) {
+    phone = `+91${phone}`;
+  } else if (!phone.startsWith('+')) {
+    phone = `+${phone}`;
+  }
+
+  const messageBody = `Dear ${enquiry.fullName},\n\nThank you for your enquiry with SN Tour And Travels! We have received your details and our team will contact you with a free customized itinerary within 2 hours.\n\nWarm Regards,\nSN Tour And Travels`;
+
+  console.log(`[Notification Service] Attempting to send Customer SMS to: ${phone}`);
+  Promise.all([
+    sendSMS(phone, messageBody)
+  ]).catch(err => console.error("Error sending customer notification:", err));
+};
 
 const notifyAdminNewEnquiry = async (enquiry) => {
   const subject = `New Tour Enquiry from ${enquiry.fullName}`;
@@ -17,14 +36,18 @@ Budget: ${enquiry.budget || 'N/A'}
 Please contact them back within 2 hours!
   `.trim();
 
-  // Fire and forget notifications so we don't block the API response
+  // Fire and forget notifications
+  console.log(`[Notification Service] Attempting to send Admin Email and Admin SMS for new enquiry...`);
   Promise.all([
     sendEmail(subject, messageBody),
-    sendSMS(`NEW ENQUIRY: ${enquiry.fullName} (${enquiry.mobile}) for ${enquiry.adults} guests.`),
-    sendWhatsApp(messageBody)
-  ]).catch(err => console.error("Error in notification service:", err));
+    sendSMS(null, messageBody)
+  ]).catch(err => console.error("Error in admin notification service:", err));
+
+  // Also notify the customer
+  notifyCustomerNewEnquiry(enquiry);
 };
 
 module.exports = {
-  notifyAdminNewEnquiry
+  notifyAdminNewEnquiry,
+  notifyCustomerNewEnquiry
 };
