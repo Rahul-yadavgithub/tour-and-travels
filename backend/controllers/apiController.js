@@ -12,7 +12,7 @@ const packages = [
     price: 'Enquire',
     features: ['Kashi Vishwanath VIP Darshan', 'Durgakund & Sankat Mochan', 'BHU Vishwanath Temple', 'Ram Nagar & Swarved Mandir'],
     link: '/package/1',
-    imageUrl: 'https://varanasiayodhya.com/images/varanasi-munshi-ghat-orange-flags-pilgrims-card.webp',
+    imageUrl: 'https://res.cloudinary.com/dz8whxcuk/image/upload/v1780826105/varanasi-munshi-ghat-orange-flags-pilgrims-card_gxnj1d.webp',
     overview: 'The Kashi Vishwanath Temple is one of the most famous Hindu temples dedicated to Lord Shiva. It is located in Varanasi, Uttar Pradesh, India. The temple stands on the western bank of the holy river Ganga, and is one of the twelve Jyotirlingas, the holiest of Shiva temples. The main deity is known by the name Shri Vishwanath and Vishweshwara literally meaning "Lord of the Universe". Varanasi was called Kashi in ancient times, and hence the temple is popularly called Kashi Vishwanath Temple.',
     officialInfo: 'The current structure was built on an adjacent site by the Maratha ruler, Ahilya Bai Holkar of Indore in 1780. Since 1983, the temple has been managed by the Government of Uttar Pradesh under the Shri Kashi Vishwanath Temple Act.',
     itinerary: [
@@ -30,7 +30,7 @@ const packages = [
     price: 'Enquire',
     features: ['Divine Ganga Aarti at Dashashwamedh Ghat', 'Local Sightseeing', 'Polite & Friendly Behaviour', '100% Customer Satisfaction'],
     link: '/package/2',
-    imageUrl: 'https://varanasiayodhya.com/images/ganga-aarti-varanasi-priest-night.webp',
+    imageUrl: 'https://res.cloudinary.com/dz8whxcuk/image/upload/v1780826240/ganga-aarti-varanasi-priest-night_w3hhqq.webp',
     overview: 'Ganga Aarti is a magnificent, deeply spiritual ritual performed daily on the banks of the Ganges. The most prominent Aarti takes place at Dashashwamedh Ghat in Varanasi. It involves the chanting of hymns, the rhythmic ringing of bells, and the offering of light to the holy river via multi-tiered brass lamps (diyas). It is a highly choreographed ceremony performed by young pandits draped in traditional attire.',
     officialInfo: 'The Aarti is conducted daily at dusk (around 6:45 PM in summer and 6:00 PM in winter). It is organized by the Ganga Seva Nidhi trust. Seating is on a first-come, first-served basis unless special boat seating is arranged.',
     itinerary: [
@@ -64,7 +64,7 @@ const packages = [
     price: 'Enquire',
     features: ['Darshan of Shri Ram Janmabhoomi', 'Major temples of Ayodhya', 'Family & Group Tours', 'Safe & Trusted Guide'],
     link: '/package/4',
-    imageUrl: 'https://varanasiayodhya.com/images/ayodhya-ram-mandir.webp',
+    imageUrl: 'https://res.cloudinary.com/dz8whxcuk/image/upload/v1780826320/ayodhya-ram-mandir_d1s5dq.webp',
     overview: 'The Ram Mandir is a Hindu temple in Ayodhya, Uttar Pradesh, India, located at the sacred Ram Janmabhoomi, the widely believed birthplace of Rama, a principal deity of Hinduism. The temple architecture follows the traditional Nagara style, featuring intricate carvings, massive spires, and a grand sanctum that houses the idol of Ram Lalla (the infant Rama).',
     officialInfo: 'The temple complex is managed by the Shri Ram Janmabhoomi Teerth Kshetra trust. Standard Darshan timings are from 7:00 AM to 11:30 AM and 2:00 PM to 7:00 PM. Mobile phones and electronics are strictly prohibited inside.',
     itinerary: [
@@ -98,7 +98,7 @@ const packages = [
     price: 'Enquire',
     features: ['Maa Vindhyavasini Darshan', 'Ashtabhuja Temple', 'Kali Khoh Temple', 'Sita Samahit Sthal Excursion'],
     link: '/package/6',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Vindhyavasini_temple%2C_Vindhyachal.jpg/800px-Vindhyavasini_temple%2C_Vindhyachal.jpg',
+    imageUrl: 'https://res.cloudinary.com/dz8whxcuk/image/upload/v1780826392/Vindhyavasini_mata_dz7l4p.jpg',
     overview: 'Vindhyachal is a prominent Hindu pilgrimage town in the Mirzapur district of Uttar Pradesh. It is widely known for its sacred temples and the ritual of Trikon Parikrama (the sacred triangular circuit). The primary destination is the Maa Vindhyavasini Temple, a revered Shakti Peeth dedicated to Goddess Vindhyavasini, an incarnation of Durga.',
     officialInfo: 'The Trikon Parikrama consists of visiting three main temples: Maa Vindhyavasini, Ashtabhuja (dedicated to Goddess Saraswati), and Kali Khoh (a cave temple dedicated to Goddess Kali). Visitors also often include an excursion to Sita Samahit Sthal (Sitamarhi), located about 50 km away, which is the legendary site where Mother Sita is believed to have descended into the earth.',
     itinerary: [
