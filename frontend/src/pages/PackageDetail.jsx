@@ -7,12 +7,12 @@ import { API_BASE_URL } from '../config';
 export default function PackageDetail() {
   const { id } = useParams();
   const [pkg, setPkg] = useState(null);
-  const [allPackages, setAllPackages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    setLoading(true);
+    // Remove synchronous setLoading(true)
     axios.get(`${API_BASE_URL}/api/packages/${id}`)
       .then(res => {
         setPkg(res.data);

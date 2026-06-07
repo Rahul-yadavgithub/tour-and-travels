@@ -9,7 +9,6 @@ export default function AdminReviews() {
 
   const fetchReviews = async () => {
     try {
-      setLoading(true);
       // Fetch all unapproved reviews
       const res = await axios.get(`${API_BASE_URL}/api/reviews?approved=false`);
       setReviews(res.data);
