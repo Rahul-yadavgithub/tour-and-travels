@@ -14,7 +14,7 @@ const Hotels = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [deleteModal, setDeleteModal] = useState({ isOpen: false, id: null });
 
-  const [formData, setFormData] = useState({ name: '', roomType: '', location: '', description: '' });
+  const [formData, setFormData] = useState({ name: '', roomType: '', location: '' });
   const [selectedFiles, setSelectedFiles] = useState([]);
 
   const fetchHotels = async () => {
@@ -39,11 +39,10 @@ const Hotels = () => {
       setFormData({
         name: hotel.name || '',
         roomType: hotel.roomType || '',
-        location: hotel.location || '',
-        description: hotel.description || ''
+        location: hotel.location || ''
       });
     } else {
-      setFormData({ name: '', roomType: '', location: '', description: '' });
+      setFormData({ name: '', roomType: '', location: '' });
     }
     setSelectedFiles([]);
     setIsFormOpen(true);
@@ -184,10 +183,7 @@ const Hotels = () => {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-zinc-700 mb-1">Description (Optional)</label>
-                <textarea rows="3" className="input-field" value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} placeholder="Brief details..."></textarea>
-              </div>
+
 
               <div className="pt-4 border-t border-zinc-100 flex justify-end gap-3">
                 <button type="button" disabled={isSubmitting} onClick={() => setIsFormOpen(false)} className="btn btn-ghost">Cancel</button>

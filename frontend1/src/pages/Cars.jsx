@@ -17,7 +17,7 @@ const Cars = () => {
   const [deleteModal, setDeleteModal] = useState({ isOpen: false, id: null });
 
   // Form states
-  const [formData, setFormData] = useState({ name: '', seatCapacity: '', luggageCapacity: '', isAC: true, bestSuitedFor: '', description: '' });
+  const [formData, setFormData] = useState({ name: '', seatCapacity: '', luggageCapacity: '', isAC: true, bestSuitedFor: '' });
   const [selectedFiles, setSelectedFiles] = useState([]);
 
   const fetchCars = async () => {
@@ -44,11 +44,10 @@ const Cars = () => {
         seatCapacity: car.seatCapacity || '',
         luggageCapacity: car.luggageCapacity || '',
         isAC: car.isAC ?? true,
-        bestSuitedFor: car.bestSuitedFor || '',
-        description: car.description || ''
+        bestSuitedFor: car.bestSuitedFor || ''
       });
     } else {
-      setFormData({ name: '', seatCapacity: '', luggageCapacity: '', isAC: true, bestSuitedFor: '', description: '' });
+      setFormData({ name: '', seatCapacity: '', luggageCapacity: '', isAC: true, bestSuitedFor: '' });
     }
     setSelectedFiles([]);
     setIsFormOpen(true);
@@ -203,10 +202,7 @@ const Cars = () => {
                 </select>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-zinc-700 mb-1">Description (Optional)</label>
-                <textarea rows="3" className="input-field" value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} placeholder="Brief details about the condition or features..."></textarea>
-              </div>
+
 
               <div className="pt-4 border-t border-zinc-100 flex justify-end gap-3">
                 <button type="button" disabled={isSubmitting} onClick={() => setIsFormOpen(false)} className="btn btn-ghost">Cancel</button>

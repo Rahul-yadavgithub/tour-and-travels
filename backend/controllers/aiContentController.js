@@ -56,6 +56,34 @@ const generateContent = async (req, res) => {
   }
 };
 
+const generateCarDesc = async (req, res) => {
+  try {
+    const { name, seatCapacity, acAvailable } = req.body;
+    if (!name) return res.status(400).json({ error: 'Car name is required' });
+    
+    const description = await AIContentService.generateCarDescription(name, seatCapacity, acAvailable);
+    return res.status(200).json({ success: true, description });
+  } catch (error) {
+    console.error('Car desc AI Error:', error);
+    return res.status(500).json({ success: false, error: 'Failed to generate car description' });
+  }
+};
+
+const generateHotelDesc = async (req, res) => {
+  try {
+    const { name, roomType, location } = req.body;
+    if (!name) return res.status(400).json({ error: 'Hotel name is required' });
+    
+    const description = await AIContentService.generateHotelDescription(name, roomType, location);
+    return res.status(200).json({ success: true, description });
+  } catch (error) {
+    console.error('Hotel desc AI Error:', error);
+    return res.status(500).json({ success: false, error: 'Failed to generate hotel description' });
+  }
+};
+
 module.exports = {
-  generateContent
+  generateContent,
+  generateCarDesc,
+  generateHotelDesc
 };

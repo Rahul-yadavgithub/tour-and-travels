@@ -179,6 +179,86 @@ Return STRICTLY VALID JSON ONLY following the structure below. DO NOT WRAP IN MA
       throw new Error('Failed to generate AI content');
     }
   }
+
+  /**
+   * Generate short marketing description for a Car
+   */
+  static async generateCarDescription(carName, seatCapacity, acAvailable) {
+    if (!process.env.OPENROUTER_API_KEY) return null;
+
+    try {
+      const response = await axios.post(
+        'https://openrouter.ai/api/v1/chat/completions',
+        {
+          model: 'openai/gpt-oss-120b:free',
+          messages: [
+            {
+              role: 'system',
+              content: 'You are an expert luxury travel copywriter. Write a 2-3 sentence engaging and premium marketing description for a rental car. Do not use markdown or quotes.'
+            },
+            {
+              role: 'user',
+              content: `Write a compelling description for a rental car: ${carName}. It has ${seatCapacity} seats. ${acAvailable === 'Yes' || acAvailable === 'Yes, AC' ? 'It has AC.' : 'It is Non-AC.'} Focus on comfort, reliability, and smooth travel experiences.`
+            }
+          ]
+        },
+        {
+          timeout: 60000,
+          headers: {
+            'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+            'HTTP-Referer': 'https://tour-and-travels-fawn.vercel.app',
+            'X-Title': 'Tour and Travels Engine',
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      
+      return response.data.choices[0].message.content.trim().replace(/^["']|["']$/g, '');
+    } catch (error) {
+      console.error('Error generating Car description:', error.response?.data || error.message);
+      throw new Error('Failed to generate car description');
+    }
+  }
+
+  /**
+   * Generate short marketing description for a Hotel
+   */
+  static async generateHotelDescription(hotelName, roomType, location) {
+    if (!process.env.OPENROUTER_API_KEY) return null;
+
+    try {
+      const response = await axios.post(
+        'https://openrouter.ai/api/v1/chat/completions',
+        {
+          model: 'openai/gpt-oss-120b:free',
+          messages: [
+            {
+              role: 'system',
+              content: 'You are an expert luxury travel copywriter. Write a 2-3 sentence engaging and premium marketing description for a hotel. Do not use markdown or quotes.'
+            },
+            {
+              role: 'user',
+              content: `Write a compelling description for this hotel: ${hotelName}. The room type is ${roomType}. It is located in ${location}. Focus on comfort, excellent hospitality, and a memorable stay.`
+            }
+          ]
+        },
+        {
+          timeout: 60000,
+          headers: {
+            'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+            'HTTP-Referer': 'https://tour-and-travels-fawn.vercel.app',
+            'X-Title': 'Tour and Travels Engine',
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      
+      return response.data.choices[0].message.content.trim().replace(/^["']|["']$/g, '');
+    } catch (error) {
+      console.error('Error generating Hotel description:', error.response?.data || error.message);
+      throw new Error('Failed to generate hotel description');
+    }
+  }
 }
 
 module.exports = AIContentService;
