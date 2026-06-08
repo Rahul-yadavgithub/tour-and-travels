@@ -659,7 +659,7 @@ export default function PackageEditor() {
               
               {/* Current Price */}
               <div className="mb-4">
-                <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider block mb-1.5">Current Price (₹)</label>
+                <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider block mb-1.5">With Discount Price (₹)</label>
                 <div className="flex items-center gap-2">
                   <span className="font-serif text-2xl text-[#3e342d]">₹</span>
                   <input 
@@ -675,7 +675,7 @@ export default function PackageEditor() {
 
               {/* Old / Original Price */}
               <div className="mb-4">
-                <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider block mb-1.5">Old Price (₹) <span className="text-zinc-400 font-normal normal-case">— optional</span></label>
+                <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider block mb-1.5">Without Discount Price (₹) <span className="text-zinc-400 font-normal normal-case">— optional</span></label>
                 <div className="flex items-center gap-2">
                   <span className="font-serif text-2xl text-zinc-400">₹</span>
                   <input 
@@ -686,7 +686,7 @@ export default function PackageEditor() {
                     placeholder="e.g. 6999"
                   />
                 </div>
-                <p className="text-[10px] text-zinc-400 mt-1 italic">If set higher than current price, a strikethrough discount will appear on the website.</p>
+                <p className="text-[10px] text-zinc-400 mt-1 italic">If set higher than with discount price, a strikethrough discount will appear on the website.</p>
               </div>
 
               {/* Auto-calculated Discount Display */}
@@ -712,7 +712,7 @@ export default function PackageEditor() {
                   className="w-full bg-zinc-50 border border-zinc-300 p-3 rounded-xl focus:border-[#fca311] outline-none text-lg font-bold shadow-inner transition-colors" 
                   placeholder="e.g. 20"
                 />
-                <p className="text-[10px] text-zinc-400 mt-1 italic">Manually set the discount badge %. Leave empty to auto-calculate from old price.</p>
+                <p className="text-[10px] text-zinc-400 mt-1 italic">Manually set the discount badge %. Leave empty to auto-calculate from Without discount price.</p>
               </div>
               
               <div className="w-full bg-[#fca311] text-white text-center rounded-xl py-4 font-bold text-lg shadow-md block mb-3 cursor-not-allowed opacity-70">

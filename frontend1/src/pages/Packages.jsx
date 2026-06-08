@@ -315,7 +315,7 @@ export default function Packages() {
                 </h3>
                 <div className="grid grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-amber-900 mb-2">Current Price (₹)</label>
+                    <label className="block text-sm font-medium text-amber-900 mb-2">With Discount Price (₹)</label>
                     <input 
                       type="number" 
                       value={editingPkg.currentPrice} 
@@ -325,7 +325,7 @@ export default function Packages() {
                   </div>
                   <div>
                     <div className="flex justify-between items-end mb-2">
-                      <label className="block text-sm font-medium text-amber-900">Old Price (₹)</label>
+                      <label className="block text-sm font-medium text-amber-900">Without Discount Price (₹)</label>
                       {editingPkg.oldPrice > editingPkg.currentPrice && (
                         <span className="text-[10px] font-bold bg-amber-500 text-white px-2 py-0.5 rounded shadow-sm">
                           {Math.round(((editingPkg.oldPrice - editingPkg.currentPrice) / editingPkg.oldPrice) * 100)}% OFF PREVIEW

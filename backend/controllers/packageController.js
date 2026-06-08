@@ -41,11 +41,8 @@ exports.updatePackage = async (req, res) => {
   try {
     const { id } = req.params;
     
-    // Prevent overriding structural integrity fields if needed, 
-    // but the schema is flexible.
     const updateData = { ...req.body, updatedBy: req.user?.id || 'Admin' };
     
-    // Find existing package to compare prices
     let query = !isNaN(id) ? { legacyId: parseInt(id) } : { _id: id };
     const existingPkg = await Package.findOne(query);
     
@@ -53,30 +50,23 @@ exports.updatePackage = async (req, res) => {
       return res.status(404).json({ message: 'Package not found' });
     }
 
-    // Handle dynamic pricing logic
-    if (updateData.currentPrice !== undefined) {
-      const newPrice = Number(updateData.currentPrice);
-      const prevPrice = existingPkg.currentPrice;
+    // Simple pricing logic: Admin sets currentPrice and oldPrice directly.
+    // Auto-calculate discountPercentage from those values.
+    const currentPrice = updateData.currentPrice !== undefined 
+      ? Number(updateData.currentPrice) 
+      : existingPkg.currentPrice;
+    const oldPrice = updateData.oldPrice !== undefined 
+      ? (updateData.oldPrice === '' || updateData.oldPrice === null ? null : Number(updateData.oldPrice))
+      : existingPkg.oldPrice;
 
-      // If price changed
-      if (newPrice !== prevPrice) {
-        if (newPrice > prevPrice) {
-          // Price increased: Hardcode a 5% discount look
-          updateData.oldPrice = Math.round(newPrice / 0.95);
-          updateData.discountPercentage = 5;
-        } else {
-          // Price decreased: Calculate genuine discount from previous price
-          updateData.oldPrice = prevPrice;
-          updateData.discountPercentage = Math.round(((prevPrice - newPrice) / prevPrice) * 100);
-        }
-      } else {
-        // Price didn't change, preserve existing discount unless oldPrice was manually updated
-        if (updateData.oldPrice !== undefined && updateData.oldPrice > newPrice) {
-          updateData.discountPercentage = Math.round(((updateData.oldPrice - newPrice) / updateData.oldPrice) * 100);
-        } else if (updateData.oldPrice !== undefined && updateData.oldPrice <= newPrice) {
-          updateData.discountPercentage = 0;
-        }
+    if (oldPrice && currentPrice && oldPrice > currentPrice) {
+      // Auto-calculate discount unless admin explicitly set a manual override
+      if (updateData.discountPercentage === undefined || updateData.discountPercentage === '' || updateData.discountPercentage === null) {
+        updateData.discountPercentage = Math.round(((oldPrice - currentPrice) / oldPrice) * 100);
       }
+    } else if (!oldPrice || oldPrice <= currentPrice) {
+      // No valid old price or old price <= current price means no discount
+      updateData.discountPercentage = 0;
     }
 
     const updatedPkg = await Package.findOneAndUpdate(query, updateData, { new: true });
