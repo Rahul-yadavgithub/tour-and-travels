@@ -10,9 +10,69 @@ export default function Footer() {
           {/* Brand & About */}
           <div className="md:col-span-5">
             <Link className="inline-flex leading-none flex-col items-start mb-6" to="/">
-              <span className="font-serif text-ivory font-light text-[28px] leading-none whitespace-nowrap" style={{ letterSpacing: '-0.005em' }}>
-                Varanasi SN <span className="text-gold">Tour & Travels</span>
-              </span>
+              <svg width="300" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" className="max-w-full">
+                <defs>
+                  <linearGradient id="sunGradientFooter" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#FFB300" stopOpacity="0.2" />
+                    <stop offset="100%" stopColor="#F57C00" stopOpacity="0" />
+                  </linearGradient>
+                  <linearGradient id="templeGradientFooter" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#D84315" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#B71C1C" stopOpacity="1" />
+                  </linearGradient>
+                  <radialGradient id="auraGradientFooter" cx="50%" cy="30%">
+                    <stop offset="0%" stopColor="#FFB300" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#F57C00" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+
+                {/* Icon section */}
+                <g transform="translate(10, 10)">
+                  {/* Spiritual aura */}
+                  <circle cx="40" cy="40" r="38" fill="url(#auraGradientFooter)" />
+
+                  {/* Rising sun rays */}
+                  <g opacity="0.6">
+                    <line x1="40" y1="8" x2="40" y2="0" stroke="#FFB300" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="55" y1="12" x2="61" y2="6" stroke="#FFB300" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="65" y1="24" x2="73" y2="20" stroke="#FFB300" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="68" y1="40" x2="76" y2="40" stroke="#FFB300" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="25" y1="12" x2="19" y2="6" stroke="#FFB300" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="15" y1="24" x2="7" y2="20" stroke="#FFB300" strokeWidth="1.5" strokeLinecap="round"/>
+                    <line x1="12" y1="40" x2="4" y2="40" stroke="#FFB300" strokeWidth="1.5" strokeLinecap="round"/>
+                  </g>
+
+                  {/* Sun circle */}
+                  <circle cx="40" cy="24" r="10" fill="url(#sunGradientFooter)" stroke="#FFB300" strokeWidth="2"/>
+
+                  {/* Ganga river waves */}
+                  <path d="M 8 60 Q 16 57 24 60 T 40 60 T 56 60 T 72 60" stroke="#1565C0" strokeWidth="2" fill="none" opacity="0.5"/>
+                  <path d="M 8 64 Q 20 61 32 64 T 48 64 T 64 64 T 72 64" stroke="#1565C0" strokeWidth="2" fill="none" opacity="0.3"/>
+
+                  {/* Temple structure */}
+                  <rect x="28" y="40" width="24" height="20" fill="url(#templeGradientFooter)" rx="1"/>
+                  <path d="M 25.6 40 L 40 32 L 54.4 40 Z" fill="url(#templeGradientFooter)"/>
+                  <path d="M 30.4 32 L 40 27.2 L 49.6 32 Z" fill="url(#templeGradientFooter)"/>
+
+                  {/* Temple kalash */}
+                  <circle cx="40" cy="27.2" r="2" fill="#FFB300"/>
+                  <rect x="39.2" y="24" width="1.6" height="3.2" fill="#FFB300"/>
+
+                  {/* Om symbol */}
+                  <path d="M 38.4 48 Q 38.4 46.4 40 46.4 Q 41.6 46.4 41.6 48 Q 41.6 49.6 40 49.6 Q 38.4 49.6 38.4 48 M 40 46.4 L 40 44 M 41.6 48 Q 43.2 48 43.2 49.6"
+                        stroke="#ffffff" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round" opacity="0.9"/>
+
+                  {/* Temple door */}
+                  <rect x="37.6" y="50.4" width="4.8" height="8" fill="#FFB300" opacity="0.3" rx="0.4"/>
+                </g>
+
+                {/* Text section */}
+                <g transform="translate(100, 20)">
+                  <text x="0" y="30" fontFamily="Arial, sans-serif" fontSize="35" fontWeight="700" fill="#D84315" letterSpacing="-0.7">SN</text>
+                  <text x="0" y="48" fontFamily="Arial, sans-serif" fontSize="11" fontWeight="500" fill="#F57C00" letterSpacing="1.65" style={{textTransform:'uppercase'}}>TOUR &amp; TRAVELS</text>
+                  <text x="0" y="60" fontFamily="Arial, sans-serif" fontSize="9" fontWeight="400" fill="#B71C1C" letterSpacing="0.72" fontStyle="italic">Varanasi</text>
+                </g>
+              </svg>
             </Link>
             <p className="text-ivory/70 text-sm leading-relaxed max-w-sm mb-6">
               Travel with Joy & Happiness everywhere where is needed. We make your spiritual journey to Kashi, Prayagraj, Gaya, and Ayodhya deeply memorable.

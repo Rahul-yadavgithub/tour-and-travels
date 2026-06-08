@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { API_BASE_URL } from '../config';
+import SacredDestinations from '../components/SacredDestinations';
 
 const formatStat = (num) => {
   if (num === undefined || num === null) return '';
@@ -252,15 +253,11 @@ export default function Home() {
       </section>
 
       {/* The Four Sacred Cities */}
-      <section className="bg-ivory py-20 md:py-28 relative">
+      <SacredDestinations />
+      <section className="bg-ivory pb-20 md:pb-28 relative pt-12 md:pt-16">
         <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 relative z-10">
-          <div className="mb-12 max-w-3xl">
-            <p className="font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">Our Main Service Areas</p>
-            <h2 className="font-serif text-3xl md:text-5xl font-light leading-[1.15]">Kashi. Prayagraj. Gaya.<br /><span className="italic">Ayodhya.</span></h2>
-            <p className="text-charcoal-400 text-base leading-relaxed mt-6 max-w-xl">We provide safe & trusted guide services across the most revered pilgrimage destinations in North India.</p>
-          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {featuredPackages.length > 0 ? featuredPackages.slice(0, 4).map((pkg, index) => (
+            {featuredPackages.length > 0 ? featuredPackages.slice(0, 6).map((pkg, index) => (
               <div 
                 key={pkg._id || pkg.legacyId} 
                 className="bg-ivory group overflow-hidden cursor-pointer rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-earth/5" 

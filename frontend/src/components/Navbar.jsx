@@ -1,6 +1,94 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+const LogoSVG = ({ className = "w-[clamp(3.5rem,5vw,5rem)] h-auto" }) => (
+  <svg 
+    className={`overflow-visible transition-all duration-700 ease-in-out ${className}`} 
+    viewBox="-5 -5 110 110" 
+    preserveAspectRatio="xMidYMid meet"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient id="sunGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#FFB300" stopOpacity="0.4" />
+        <stop offset="100%" stopColor="#F57C00" stopOpacity="0" />
+      </linearGradient>
+      <linearGradient id="candleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#E65100" />
+        <stop offset="100%" stopColor="#992B00" />
+      </linearGradient>
+      <linearGradient id="templeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#D84315" stopOpacity="0.75" />
+        <stop offset="100%" stopColor="#8C1313" stopOpacity="0.9" />
+      </linearGradient>
+      <radialGradient id="auraGradient" cx="50%" cy="45%" r="55%">
+        <stop offset="0%" stopColor="#FFB300" stopOpacity="0.25" />
+        <stop offset="60%" stopColor="#FF8F00" stopOpacity="0.1" />
+        <stop offset="100%" stopColor="#F57C00" stopOpacity="0" />
+      </radialGradient>
+      <radialGradient id="flameGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stopColor="#FFD54F" stopOpacity="0.8" />
+        <stop offset="100%" stopColor="#FF8F00" stopOpacity="0" />
+      </radialGradient>
+    </defs>
+
+    {/* Spiritual aura - Scales on large screens */}
+    <g className="origin-center transition-transform duration-1000 md:scale-[1.15]">
+      <circle cx="50" cy="45" r="45" fill="url(#auraGradient)" />
+    </g>
+
+    {/* Rising sun rays */}
+    <g className="origin-center transition-transform duration-1000 md:scale-105" opacity="0.85" stroke="#F57C00" strokeWidth="2" strokeLinecap="round">
+      <line x1="50" y1="5" x2="50" y2="-2" />
+      <line x1="72" y1="12" x2="80" y2="5" />
+      <line x1="88" y1="30" x2="96" y2="25" />
+      <line x1="92" y1="52" x2="102" y2="52" />
+      <line x1="28" y1="12" x2="20" y2="5" />
+      <line x1="12" y1="30" x2="4" y2="25" />
+      <line x1="8" y1="52" x2="-2" y2="52" />
+    </g>
+
+    {/* Sun arc */}
+    <path d="M 22 55 A 28 28 0 0 1 78 55" fill="none" stroke="url(#sunGradient)" strokeWidth="3" opacity="0.7"/>
+
+    {/* Temple structure - Subtle background layer */}
+    <g className="origin-bottom transition-transform duration-1000 md:-translate-y-1">
+      <rect x="28" y="45" width="44" height="32" fill="url(#templeGradient)" rx="2" opacity="0.5"/>
+      <path d="M 23 45 L 50 30 L 77 45 Z" fill="url(#templeGradient)" opacity="0.6"/>
+      <path d="M 31 35 L 50 22 L 69 35 Z" fill="url(#templeGradient)" opacity="0.7"/>
+      <circle cx="50" cy="22" r="3" fill="#FFB300" opacity="0.9"/>
+      <rect x="49" y="16" width="2" height="6" fill="#FFB300" opacity="0.9"/>
+    </g>
+
+    {/* Focal Point: Premium Candle / Diya */}
+    <g className="origin-bottom transition-transform duration-1000 md:scale-110 relative z-10">
+      {/* Candle Body - Prominent and visually heavier than flame */}
+      <rect x="36" y="52" width="28" height="26" fill="url(#candleGradient)" rx="3" />
+      <ellipse cx="50" cy="52" rx="14" ry="4" fill="#E65100" />
+      
+      {/* Candle base shadow */}
+      <ellipse cx="50" cy="78" rx="15" ry="3" fill="#2B1D0E" opacity="0.4" />
+
+      {/* Elegant Flame Glow */}
+      <circle cx="50" cy="40" r="16" fill="url(#flameGlow)" className="animate-pulse" />
+
+      {/* Flame (Om symbol) - Scaled to be balanced and smaller than body */}
+      <g transform="translate(50, 42) scale(0.65) translate(-50, -60)">
+        <path d="M 48 60 Q 48 58 50 58 Q 52 58 52 60 Q 52 62 50 62 Q 48 62 48 60 M 50 58 L 50 55 M 52 60 Q 54 60 54 62"
+              stroke="#FFF8E1" strokeWidth="5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M 48 60 Q 48 58 50 58 Q 52 58 52 60 Q 52 62 50 62 Q 48 62 48 60 M 50 58 L 50 55 M 52 60 Q 54 60 54 62"
+              stroke="#FF8F00" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    </g>
+
+    {/* Ganga river waves */}
+    <g className="origin-bottom transition-transform duration-1000 md:scale-105">
+      <path d="M -2 78 Q 15 72 35 78 T 65 78 T 102 78" stroke="#1565C0" strokeWidth="2.5" fill="none" opacity="0.7" strokeLinecap="round"/>
+      <path d="M 5 86 Q 25 80 45 86 T 75 86 T 100 86" stroke="#1E88E5" strokeWidth="2" fill="none" opacity="0.4" strokeLinecap="round"/>
+    </g>
+  </svg>
+);
+
 export default function Navbar() {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -41,20 +129,16 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Small Logo (Center) */}
-        <Link className="md:hidden flex-1 text-center font-serif text-xl font-bold truncate px-2" to="/">
-           <span className={isLightText ? 'text-ivory' : 'text-charcoal'}>SN Tours</span>
+        <Link className="md:hidden flex-1 flex justify-center items-center gap-2 font-serif text-xl font-bold truncate px-2" to="/">
+           <LogoSVG className="w-[clamp(2.5rem,8vw,3.5rem)] h-auto" />
         </Link>
 
         {/* Invisible spacer to keep mobile logo centered */}
         <div className="md:hidden w-10"></div>
 
         {/* Desktop Logo */}
-        <Link className="hidden md:inline-flex leading-none flex-col items-center" to="/">
-          <span className={`font-serif font-light text-[26px] leading-none whitespace-nowrap ${isLightText ? 'text-ivory' : 'text-charcoal'}`} style={{ letterSpacing: '-0.005em' }}>
-            Varanasi SN <span className="text-gold">Tour & Travels</span>
-          </span>
-          <span className="block h-[2px] bg-gold w-20 mt-2"></span>
-          <span className={`text-[9px] font-medium tracking-[0.28em] mt-1.5 uppercase text-center ${isLightText ? 'text-ivory/40' : 'text-charcoal/40'}`}>Tourist Services</span>
+        <Link className="hidden md:inline-flex leading-none flex-row items-center gap-3" to="/">
+          <LogoSVG className="w-[clamp(3.5rem,5vw,5rem)] h-auto" />
         </Link>
 
         {/* Desktop Nav Links */}
@@ -97,10 +181,8 @@ export default function Navbar() {
         
         {/* Drawer Header with Title */}
         <div className="flex items-start justify-between p-5 border-b border-gray-100 bg-gray-50/50">
-          <div className="flex flex-col">
-            <span className="font-serif font-medium text-xl text-charcoal leading-tight">Varanasi SN</span>
-            <span className="font-serif font-medium text-xl text-gold leading-tight">Tour & Travels</span>
-            <span className="text-[9px] font-bold tracking-[0.2em] mt-1.5 uppercase text-charcoal/50">Tourist Services</span>
+          <div className="flex flex-row items-center gap-3">
+            <LogoSVG className="w-[clamp(3.5rem,10vw,4.5rem)] h-auto" />
           </div>
           <button 
             onClick={() => setIsMobileMenuOpen(false)} 
