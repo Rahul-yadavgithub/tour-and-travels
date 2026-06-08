@@ -26,24 +26,10 @@ const createCar = async (req, res) => {
     }
     carData.description = generatedDesc;
 
-    // Fetch Unsplash images for the car
-    let unsplashUrls = [];
-    try {
-      const images = await AIContentService.getUnsplashImages(carData.name, 2);
-      unsplashUrls = images.map(img => img.url);
-    } catch (err) {
-      console.error("Error fetching unsplash images:", err);
-    }
-
     if (req.files && req.files.length > 0) {
       carData.photoUrls = req.files.map(file => file.path);
       carData.cloudinaryPublicIds = req.files.map(file => file.filename);
-    } else {
-      carData.photoUrls = [];
     }
-    
-    // Append Unsplash stock images
-    carData.photoUrls.push(...unsplashUrls);
 
     const newCar = await Car.create(carData);
     res.status(201).json(newCar);
@@ -73,10 +59,6 @@ const updateCar = async (req, res) => {
     }
     updates.description = generatedDesc;
 
-    // Handle photos updates
-    let basePhotos = [];
-    let shouldFetchImages = false;
-
     if (req.files && req.files.length > 0) {
       // If new images are uploaded, delete the old ones
       if (car.cloudinaryPublicIds && car.cloudinaryPublicIds.length > 0) {
@@ -87,28 +69,8 @@ const updateCar = async (req, res) => {
         // Fallback for old schema
         await deleteImage(car.cloudinaryPublicId).catch(err => console.error(err));
       }
-      basePhotos = req.files.map(file => file.path);
-      updates.photoUrls = basePhotos;
+      updates.photoUrls = req.files.map(file => file.path);
       updates.cloudinaryPublicIds = req.files.map(file => file.filename);
-      shouldFetchImages = true;
-    } else {
-      basePhotos = car.photoUrls || [];
-      if (updates.name !== undefined && updates.name !== car.name) {
-        // Name changed, filter out old stock images and fetch new ones
-        basePhotos = basePhotos.filter(url => !url.includes('unsplash.com'));
-        shouldFetchImages = true;
-      }
-    }
-
-    if (shouldFetchImages) {
-      let unsplashUrls = [];
-      try {
-        const images = await AIContentService.getUnsplashImages(currentName, 2);
-        unsplashUrls = images.map(img => img.url);
-      } catch (err) {
-        console.error("Error fetching unsplash images:", err);
-      }
-      updates.photoUrls = [...basePhotos, ...unsplashUrls];
     }
 
     Object.assign(car, updates);

@@ -30,24 +30,10 @@ const createHotel = async (req, res) => {
     }
     hotelData.description = generatedDesc;
 
-    // Fetch Unsplash images for the hotel
-    let unsplashUrls = [];
-    try {
-      const images = await AIContentService.getUnsplashImages(hotelData.name, 2);
-      unsplashUrls = images.map(img => img.url);
-    } catch (err) {
-      console.error("Error fetching unsplash images:", err);
-    }
-
     if (req.files && req.files.length > 0) {
       hotelData.photoUrls = req.files.map(file => file.path);
       hotelData.cloudinaryPublicIds = req.files.map(file => file.filename);
-    } else {
-      hotelData.photoUrls = [];
     }
-
-    // Append Unsplash stock images
-    hotelData.photoUrls.push(...unsplashUrls);
 
     const newHotel = await Hotel.create(hotelData);
     res.status(201).json(newHotel);
@@ -80,10 +66,6 @@ const updateHotel = async (req, res) => {
     }
     updates.description = generatedDesc;
 
-    // Handle photos updates
-    let basePhotos = [];
-    let shouldFetchImages = false;
-
     if (req.files && req.files.length > 0) {
       if (hotel.cloudinaryPublicIds && hotel.cloudinaryPublicIds.length > 0) {
         for (const publicId of hotel.cloudinaryPublicIds) {
@@ -92,28 +74,8 @@ const updateHotel = async (req, res) => {
       } else if (hotel.cloudinaryPublicId) {
         await deleteImage(hotel.cloudinaryPublicId).catch(err => console.error(err));
       }
-      basePhotos = req.files.map(file => file.path);
-      updates.photoUrls = basePhotos;
+      updates.photoUrls = req.files.map(file => file.path);
       updates.cloudinaryPublicIds = req.files.map(file => file.filename);
-      shouldFetchImages = true;
-    } else {
-      basePhotos = hotel.photoUrls || [];
-      if (updates.name !== undefined && updates.name !== hotel.name) {
-        // Name changed, filter out old stock images and fetch new ones
-        basePhotos = basePhotos.filter(url => !url.includes('unsplash.com'));
-        shouldFetchImages = true;
-      }
-    }
-
-    if (shouldFetchImages) {
-      let unsplashUrls = [];
-      try {
-        const images = await AIContentService.getUnsplashImages(currentName, 2);
-        unsplashUrls = images.map(img => img.url);
-      } catch (err) {
-        console.error("Error fetching unsplash images:", err);
-      }
-      updates.photoUrls = [...basePhotos, ...unsplashUrls];
     }
 
     Object.assign(hotel, updates);
