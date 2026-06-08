@@ -52,27 +52,35 @@ export default function CarRentals() {
   const displayCars = apiCars.length > 0 ? apiCars : defaultCars;
 
   return (
-    <div className="min-h-screen bg-ivory font-sans text-earth pt-32 pb-20">
-      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16">
+    <div className="min-h-screen bg-ivory font-sans text-earth pt-[72px] md:pt-[88px] pb-20 relative">
+      {/* Header */}
+      <div className="bg-black text-ivory py-16 px-6 md:px-12 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
+        <div className="w-full relative z-10 text-center">
+          <span className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-2 block">Transportation Services</span>
+          <h1 className="font-serif text-4xl md:text-5xl font-light mb-4">Fleet & Vehicle Specifications</h1>
+        </div>
+      </div>
+
+      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-12">
         <div className="mb-16">
-          <p className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">Transportation Services</p>
-          <h1 className="font-serif text-4xl md:text-6xl font-light mb-6">Fleet & Vehicle Specifications</h1>
-          <div className="bg-white p-6 border border-earth/10 shadow-md rounded-2xl max-w-4xl">
-            <h2 className="text-xl font-serif mb-2">Service Overview</h2>
-            <p className="text-earth-400 text-sm leading-relaxed mb-4">
+          <div className="bg-white p-6 border border-earth/10 shadow-md rounded-2xl max-w-4xl mx-auto">
+            <h2 className="text-xl font-serif mb-2 text-center md:text-left">Service Overview</h2>
+            <p className="text-earth-400 text-sm leading-relaxed mb-4 text-center md:text-left">
               Our transportation division operates a comprehensive fleet of vehicles specifically maintained for both city and highway journeys. 
-              <strong> All vehicle categories are available across all 4 major locations (Kashi, Prayagraj, Gaya, and Ayodhya)</strong>. Vehicles are assigned with highly experienced, professional drivers well-versed with the local routes.
+              <strong> All vehicle categories are available across all 5 major locations (Kashi, Prayagraj, Gaya, Ayodhya, and Vindhyachal)</strong>. Vehicles are assigned with highly experienced, professional drivers well-versed with the local routes.
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap justify-center md:justify-start gap-2">
               <span className="text-xs bg-saffron/10 text-saffron-dark px-2 py-1 border border-saffron/20 rounded">Available in Kashi (Varanasi)</span>
               <span className="text-xs bg-saffron/10 text-saffron-dark px-2 py-1 border border-saffron/20 rounded">Available in Prayagraj</span>
               <span className="text-xs bg-saffron/10 text-saffron-dark px-2 py-1 border border-saffron/20 rounded">Available in Gaya</span>
               <span className="text-xs bg-saffron/10 text-saffron-dark px-2 py-1 border border-saffron/20 rounded">Available in Ayodhya</span>
+              <span className="text-xs bg-saffron/10 text-saffron-dark px-2 py-1 border border-saffron/20 rounded">Available in Vindhyachal</span>
             </div>
           </div>
         </div>
         
-        <div className="space-y-8 max-w-5xl">
+        <div className="space-y-8 max-w-5xl mx-auto">
           
           {displayCars.map(car => {
             const uniqueUrls = car.photoUrls ? Array.from(new Set(car.photoUrls)) : [];
@@ -137,7 +145,7 @@ export default function CarRentals() {
 
         </div>
         
-        <div className="mt-12 text-center max-w-5xl">
+        <div className="mt-12 text-center max-w-5xl mx-auto">
           <Link to="/enquire-now" className="btn-saffron inline-flex items-center gap-2 rounded-full hover:-translate-y-0.5 hover:shadow-lg hover:shadow-gold/30 transition-all">
             Enquire for Vehicle Availability
           </Link>

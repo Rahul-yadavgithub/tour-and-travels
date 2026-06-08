@@ -25,13 +25,18 @@ export default function TourPackages() {
   }, [selectedPackage]);
 
   return (
-    <div className="bg-ivory text-earth pt-32 pb-20 relative min-h-screen">
-      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16">
-        <div className="mb-12">
-          <p className="font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-4">Explore Our Routes</p>
-          <h1 className="font-serif text-4xl md:text-5xl font-light leading-[1.15]">Tour Packages</h1>
-          <p className="text-earth-400 text-lg mt-4 max-w-2xl">Find the perfect carefully-crafted pilgrimage package that suits your schedule and preferences.</p>
+    <div className="bg-ivory text-earth pt-[72px] md:pt-[88px] relative min-h-screen">
+      {/* Header */}
+      <div className="bg-black text-ivory py-16 px-6 md:px-12 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
+        <div className="w-full relative z-10 text-center">
+          <span className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-2 block">Explore Our Routes</span>
+          <h1 className="font-serif text-4xl md:text-5xl font-light mb-4">Tour Packages</h1>
+          <p className="text-ivory/70 max-w-2xl mx-auto">Find the perfect carefully-crafted pilgrimage package that suits your schedule and preferences.</p>
         </div>
+      </div>
+
+      <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-12">
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {packages.map(pkg => (
