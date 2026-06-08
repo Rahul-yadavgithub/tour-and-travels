@@ -11,9 +11,13 @@ router.get('/:id', packageController.getPackageById);
 // --- Protected Admin Routes ---
 router.use(clerkAuth);
 
+// Create AI Package
+router.post('/ai-create', packageController.createAIPackage);
+
 // Edit packages & pricing
 router.put('/:id', packageController.updatePackage);
 router.patch('/:id/price', packageController.updatePackagePrice);
+router.delete('/:id', packageController.deletePackage);
 
 // Image Upload & Management
 const { uploadImage } = require('../services/cloudinaryService');

@@ -13,6 +13,7 @@ import Hotels from './pages/Hotels';
 import Reviews from './pages/Reviews';
 import Settings from './pages/Settings';
 import Packages from './pages/Packages';
+import PackageEditor from './pages/PackageEditor';
 import RouteManagement from './pages/RouteManagement';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
             <Route path="/services/cars" element={<Cars />} />
             <Route path="/services/hotels" element={<Hotels />} />
             <Route path="/packages" element={<Packages />} />
+            <Route path="/packages/edit/:id" element={<PackageEditor />} />
             <Route path="/route-management" element={<RouteManagement />} />
 
             <Route path="/reviews" element={<Reviews />} />

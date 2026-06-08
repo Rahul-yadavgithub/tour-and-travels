@@ -255,55 +255,68 @@ export default function Home() {
       {/* The Four Sacred Cities */}
       <SacredDestinations />
       <section className="bg-ivory pb-20 md:pb-28 relative pt-12 md:pt-16">
-        <div className="w-full px-4 sm:px-6 md:px-10 lg:px-16 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {featuredPackages.length > 0 ? featuredPackages.slice(0, 6).map((pkg, index) => (
+        <div className="w-[96%] mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 'clamp(12px, 2vw, 24px)' }}>
+            {featuredPackages.length > 0 ? featuredPackages.map((pkg, index) => (
               <div 
                 key={pkg._id || pkg.legacyId} 
-                className="bg-ivory group overflow-hidden cursor-pointer rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-earth/5" 
+                className="bg-white group overflow-hidden cursor-pointer rounded-xl md:rounded-2xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_15px_40px_-10px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-300 border border-gray-100 flex flex-col" 
                 onClick={() => navigate(`/package/${pkg.legacyId || pkg._id}`)}
               >
-                <div className="relative h-56 md:h-64 overflow-hidden">
-                  <img src={pkg.imageUrl || (pkg.imageUrls && pkg.imageUrls[0])} alt={pkg.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-transparent"></div>
+                {/* Image Section */}
+                <div className="relative h-56 md:h-60 lg:h-64 overflow-hidden shrink-0">
+                  <img 
+                    src={pkg.imageUrl || (pkg.imageUrls && pkg.imageUrls[0])} 
+                    alt={pkg.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                   
+                  {/* Discount Tag */}
                   {pkg.discountPercentage > 0 && (
-                    <div className="absolute top-4 right-4 bg-gold text-white text-[10px] font-bold px-2 py-1 rounded shadow-lg">
+                    <div className="absolute top-4 right-4 bg-[#f59e0b] text-white text-[10px] md:text-xs font-bold px-3 py-1.5 rounded-md shadow-lg tracking-wider">
                       {pkg.discountPercentage}% OFF
                     </div>
                   )}
 
-                  <div className="absolute bottom-4 left-4 flex justify-between items-end">
-                    <span className="font-serif text-ivory text-5xl font-light italic opacity-90 drop-shadow-md">
-                      0{index + 1}
+                  {/* Large Number Overlay */}
+                  <div className="absolute bottom-3 left-5">
+                    <span className="font-serif text-white/90 text-5xl md:text-6xl font-light italic drop-shadow-md">
+                      {index < 9 ? `0${index + 1}` : index + 1}
                     </span>
                   </div>
                 </div>
-                <div className="p-8">
-                  <div className="flex justify-between items-start mb-2">
-                    <p className="font-sans text-[10px] font-bold tracking-[0.15em] uppercase text-earth/60">{pkg.tag || pkg.subtitle || 'Pilgrimage'}</p>
-                    <div className="text-right">
+
+                {/* Content Section */}
+                <div className="p-5 md:p-7 flex flex-col grow">
+                  {/* Header Row: Tag & Price */}
+                  <div className="flex justify-between items-center mb-4">
+                    <p className="font-sans text-[9px] md:text-[10px] font-extrabold tracking-[0.2em] uppercase text-gray-500">
+                      {pkg.tag || pkg.subtitle || 'Pilgrimage'}
+                    </p>
+                    <div className="text-right flex flex-col items-end">
                       {pkg.oldPrice && pkg.discountPercentage > 0 && (
-                        <div className="flex items-center justify-end gap-1.5 mb-0.5">
-                          <span className="text-xs text-red-500/70 font-semibold line-through decoration-red-500/40">
-                            ₹{pkg.oldPrice}
-                          </span>
-                          <span className="text-[9px] font-bold text-red-600 bg-red-50 border border-red-100 px-1 py-0.5 rounded-sm">
-                            {pkg.discountPercentage}% OFF
-                          </span>
-                        </div>
+                        <span className="text-[10px] md:text-xs text-red-500 font-semibold line-through decoration-red-500/40 mb-0.5">
+                          ₹{pkg.oldPrice}
+                        </span>
                       )}
-                      <p className="font-serif text-2xl font-semibold text-earth leading-none">₹{pkg.currentPrice}</p>
+                      <p className="font-serif text-xl md:text-2xl font-bold text-gray-900 leading-none">
+                        ₹{pkg.currentPrice}
+                      </p>
                     </div>
                   </div>
-                  <h3 className="font-serif text-2xl md:text-3xl font-light mb-3 group-hover:text-gold transition-colors">{pkg.title}</h3>
-                  <p className="text-sm text-charcoal-400 leading-relaxed line-clamp-2">
+
+                  {/* Title & Description */}
+                  <h3 className="font-serif text-xl md:text-2xl lg:text-[28px] font-medium text-gray-900 group-hover:text-[#f59e0b] transition-colors mb-3 leading-tight line-clamp-1">
+                    {pkg.title}
+                  </h3>
+                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed line-clamp-2">
                     {pkg.overview}
                   </p>
                 </div>
               </div>
             )) : (
-              <div className="p-8 col-span-2 text-center text-charcoal-400">Loading dynamic packages...</div>
+              <div className="p-8 col-span-1 md:col-span-2 text-center text-gray-400 font-medium tracking-wide">Loading premium packages...</div>
             )}
           </div>
         </div>

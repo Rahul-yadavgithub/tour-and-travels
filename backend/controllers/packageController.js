@@ -1,5 +1,6 @@
 const Package = require('../models/Package');
 const { deleteImage } = require('../services/cloudinaryService');
+const AIContentService = require('../services/aiContentService');
 
 // --- Public Routes ---
 
@@ -44,19 +45,100 @@ exports.updatePackage = async (req, res) => {
     // but the schema is flexible.
     const updateData = { ...req.body, updatedBy: req.user?.id || 'Admin' };
     
-    let updatedPkg;
-    if (!isNaN(id)) {
-      updatedPkg = await Package.findOneAndUpdate({ legacyId: parseInt(id) }, updateData, { new: true });
-    } else {
-      updatedPkg = await Package.findByIdAndUpdate(id, updateData, { new: true });
-    }
-
-    if (!updatedPkg) {
+    // Find existing package to compare prices
+    let query = !isNaN(id) ? { legacyId: parseInt(id) } : { _id: id };
+    const existingPkg = await Package.findOne(query);
+    
+    if (!existingPkg) {
       return res.status(404).json({ message: 'Package not found' });
     }
+
+    // Handle dynamic pricing logic
+    if (updateData.currentPrice !== undefined) {
+      const newPrice = Number(updateData.currentPrice);
+      const prevPrice = existingPkg.currentPrice;
+
+      // If price changed
+      if (newPrice !== prevPrice) {
+        if (newPrice > prevPrice) {
+          // Price increased: Hardcode a 5% discount look
+          updateData.oldPrice = Math.round(newPrice / 0.95);
+          updateData.discountPercentage = 5;
+        } else {
+          // Price decreased: Calculate genuine discount from previous price
+          updateData.oldPrice = prevPrice;
+          updateData.discountPercentage = Math.round(((prevPrice - newPrice) / prevPrice) * 100);
+        }
+      } else {
+        // Price didn't change, preserve existing discount unless oldPrice was manually updated
+        if (updateData.oldPrice !== undefined && updateData.oldPrice > newPrice) {
+          updateData.discountPercentage = Math.round(((updateData.oldPrice - newPrice) / updateData.oldPrice) * 100);
+        } else if (updateData.oldPrice !== undefined && updateData.oldPrice <= newPrice) {
+          updateData.discountPercentage = 0;
+        }
+      }
+    }
+
+    const updatedPkg = await Package.findOneAndUpdate(query, updateData, { new: true });
+
     res.status(200).json({ message: 'Package updated successfully', package: updatedPkg });
   } catch (err) {
     res.status(500).json({ message: 'Error updating package', error: err.message });
+  }
+};
+
+exports.createAIPackage = async (req, res) => {
+  try {
+    const { destinationName, city, state, country, imageCount } = req.body;
+
+    if (!destinationName) {
+      return res.status(400).json({ message: 'destinationName is required' });
+    }
+
+    // 1. Fetch OSM Data
+    let osmData = null;
+    try {
+      osmData = await AIContentService.getOSMPlaceData(destinationName);
+    } catch (e) {
+      console.warn('Failed to fetch OSM Data', e);
+    }
+
+    // 2. Fetch Unsplash Images
+    let unsplashImages = [];
+    if (process.env.UNSPLASH_ACCESS_KEY) {
+      unsplashImages = await AIContentService.getUnsplashImages(destinationName, imageCount || 5);
+    }
+
+    // 3. Generate AI Content
+    const generatedData = await AIContentService.generateOpenRouterContent(
+      destinationName,
+      city,
+      state,
+      country,
+      osmData
+    );
+
+    // 4. Create Package Document
+    const newPackage = new Package({
+      title: generatedData.name || destinationName,
+      location: city || generatedData.location?.city || destinationName,
+      duration: generatedData.visitInfo?.idealVisitDuration || 'Flexible',
+      tag: 'AI Premium',
+      overview: generatedData.overview?.shortDescription || '',
+      imageUrls: unsplashImages.map(img => img.url),
+      aiContent: generatedData,
+      currentPrice: 4999 // Default price, admin can edit later
+    });
+
+    await newPackage.save();
+
+    res.status(201).json({ 
+      message: 'AI Package generated and saved successfully', 
+      package: newPackage 
+    });
+  } catch (err) {
+    console.error('Error generating AI Package:', err);
+    res.status(500).json({ message: 'Error generating AI Package', error: err.message });
   }
 };
 
@@ -155,5 +237,37 @@ exports.deletePackageImage = async (req, res) => {
     res.status(200).json({ message: 'Image deleted successfully', package: pkg });
   } catch (err) {
     res.status(500).json({ message: 'Error deleting image', error: err.message });
+  }
+};
+
+exports.deletePackage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    let pkg;
+
+    if (!isNaN(id)) {
+      pkg = await Package.findOne({ legacyId: parseInt(id) });
+    } else {
+      pkg = await Package.findById(id);
+    }
+
+    if (!pkg) {
+      return res.status(404).json({ message: 'Package not found' });
+    }
+
+    // Attempt to delete associated images from Cloudinary if any exist
+    if (pkg.cloudinaryPublicIds && pkg.cloudinaryPublicIds.length > 0) {
+      for (const publicId of pkg.cloudinaryPublicIds) {
+        if (publicId) {
+          await deleteImage(publicId).catch(err => console.error("Cloudinary deletion error:", err));
+        }
+      }
+    }
+
+    await Package.findByIdAndDelete(pkg._id);
+    res.status(200).json({ message: 'Package deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting package:', err);
+    res.status(500).json({ message: 'Error deleting package', error: err.message });
   }
 };

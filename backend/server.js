@@ -41,11 +41,14 @@ mongoose.connect(mongoUri)
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
+const aiContentRoutes = require('./routes/aiContentRoutes');
+
 app.use('/api/public', publicGuideRoutes);
 app.use('/api/guide', guideRoutes);
 app.use('/api/packages', packageRoutes);
 app.use('/api/route-management', routeManagementRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/ai', aiContentRoutes);
 app.use('/api', apiRoutes);
 
 // Global Error Handler (catches Clerk Unauthenticated errors)

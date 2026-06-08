@@ -57,9 +57,30 @@ export default function PickupRouteGuide() {
       <div className="bg-black text-ivory py-16 px-6 md:px-12 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
         <div className="w-full relative z-10 text-center">
-          <span className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-2 block">Premium Travel Experience</span>
-          <h1 className="font-serif text-4xl md:text-5xl font-light mb-4">Pickup & Route Guide</h1>
-          <p className="text-ivory/70 max-w-2xl mx-auto">Explore our available pickup locations and preview your immersive spiritual journey route before you book.</p>
+          <motion.span 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-gold font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-2 block"
+          >
+            Our Trusted
+          </motion.span>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="font-serif text-4xl md:text-5xl font-light mb-4"
+          >
+            Pickup & Route Guide
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="text-ivory/70 max-w-2xl mx-auto"
+          >
+            Explore our available pickup locations and preview your immersive spiritual journey route before you book.
+          </motion.p>
         </div>
       </div>
 
@@ -89,7 +110,7 @@ export default function PickupRouteGuide() {
                           : 'border-earth/10 shadow-sm bg-white hover:shadow-md'
                       }`}
                     >
-                      <div className="flex items-stretch h-32">
+                      <div className="flex items-stretch min-h-[8rem]">
                         {/* Image */}
                         <div className="w-1/3 bg-earth/5 relative overflow-hidden">
                           {pickup.image ? (
@@ -106,11 +127,11 @@ export default function PickupRouteGuide() {
                             {pickup.type === 'Airport' ? '✈️' : pickup.type === 'Railway Station' ? '🚆' : '🚌'} {pickup.type}
                           </span>
                           <h4 className="font-serif text-lg font-medium leading-tight mb-2 text-earth truncate">{pickup.name}</h4>
-                          <div className="flex items-center justify-between mt-auto">
-                            <span className="inline-block px-2 py-0.5 bg-green-50 text-green-700 text-[10px] font-bold rounded uppercase border border-green-200">
+                          <div className="flex flex-wrap items-center justify-between gap-2 mt-auto pt-1">
+                            <span className="inline-block px-2 py-0.5 bg-green-50 text-green-700 text-[10px] font-bold rounded uppercase border border-green-200 whitespace-nowrap">
                               Pickup Available
                             </span>
-                            <span className={`text-xs font-semibold uppercase tracking-wider transition-colors ${selectedPickup?._id === pickup._id ? 'text-saffron' : 'text-earth/40 hover:text-saffron'}`}>
+                            <span className={`text-xs font-semibold uppercase tracking-wider transition-colors whitespace-nowrap ${selectedPickup?._id === pickup._id ? 'text-saffron' : 'text-earth/40 hover:text-saffron'}`}>
                               View Route →
                             </span>
                           </div>

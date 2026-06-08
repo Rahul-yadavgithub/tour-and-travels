@@ -37,7 +37,10 @@ const PackageSchema = new mongoose.Schema({
   active: { type: Boolean, default: true },
   
   category: { type: String, default: 'General' },
-  updatedBy: { type: String, default: 'System' }
+  updatedBy: { type: String, default: 'System' },
+  
+  // AI Generated Premium Content
+  aiContent: { type: mongoose.Schema.Types.Mixed }
 }, { timestamps: true });
 
 // Pre-save hook to calculate discount percentage

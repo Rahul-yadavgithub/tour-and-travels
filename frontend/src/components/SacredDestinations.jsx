@@ -44,7 +44,7 @@ export default function SacredDestinations() {
         <div className="mb-6 md:mb-10 inline-flex items-center justify-center opacity-80">
           <span className="w-16 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]"></span>
           <span className="px-6 font-sans text-xs sm:text-sm font-semibold tracking-[0.4em] uppercase text-[#D4AF37]">
-            Divine Pilgrimages
+            Divine Pilgrimages to the our journey s
           </span>
           <span className="w-16 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]"></span>
         </div>
