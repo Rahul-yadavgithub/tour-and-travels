@@ -1,6 +1,6 @@
 <!-- Replace this with a stunning cover image of your tour platform -->
 <div align="center">
-  <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=400&fit=crop" alt="Tour and Travels Banner">
+  <img src="[https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=400&fit=crop](https://res.cloudinary.com/dzbliymin/image/upload/v1781344474/Screenshot_from_2026-06-13_15-22-04_dtyy74.png)" alt="Tour and Travels Banner">
 
   <h1 align="center">🌍 Tour & Travels Varanasi</h1>
 
