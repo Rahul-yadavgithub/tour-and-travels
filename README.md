@@ -157,12 +157,6 @@ cp .env.example .env
 npm run dev
 ```
 
-#### 4. Access the Application
-- **Frontend:** http://localhost:5173
-- **Backend API:** http://localhost:5000
-
----
-
 ## 📁 Project Structure
 
 ```
@@ -331,7 +325,6 @@ We welcome contributions! Please follow these steps:
 
 Found a bug? Have a suggestion? Help us improve!
 
-- 📧 **Email:** support@tourandtravels-varanasi.com
 - 🐙 **GitHub Issues:** [Create an issue](https://github.com/Rahul-yadavgithub/tour-and-travels/issues)
 - 💬 **Contact Form:** Available on our website
 
@@ -360,7 +353,7 @@ This project is licensed under the **MIT License** - see the LICENSE file for de
 
 **Rahul Yadav**
 - GitHub: [@Rahul-yadavgithub](https://github.com/Rahul-yadavgithub)
-- Email: [your-email@example.com]
+- Email: [rahuljnv669@gmail.com]
 
 ---
 
@@ -379,23 +372,7 @@ If you found this project helpful, please consider:
 
 | Link | Description |
 | ---- | ----------- |
-| [Live Website](#) | Visit our platform |
-| [Documentation](#) | Full API docs |
-| [Blog](#) | Travel tips & guides |
-| [Contact Us](#) | Get in touch |
+| [https://www.varanasisntours.com/](#) | Visit our platform |
+
 
 ---
-
-## 🙏 Acknowledgments
-
-- The amazing Varanasi tourism community
-- Our verified guides and drivers
-- Open-source community and libraries
-- All our users and early adopters
-
----
-
-<div align="center">
-  <p><strong>Made with ❤️ for travelers exploring the spiritual heart of India</strong></p>
-  <p>Tour & Travels Varanasi © 2024 - All Rights Reserved</p>
-</div>
