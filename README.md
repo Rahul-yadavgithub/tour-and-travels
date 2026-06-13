@@ -1,11 +1,11 @@
 <!-- Replace this with a stunning cover image of your tour platform -->
 <div align="center">
-  <img src="[https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=400&fit=crop](https://res.cloudinary.com/dzbliymin/image/upload/v1781344474/Screenshot_from_2026-06-13_15-22-04_dtyy74.png](https://res.cloudinary.com/dzbliymin/image/upload/v1781344474/Screenshot_from_2026-06-13_15-22-04_dtyy74.png)" alt="Tour and Travels Banner">
+  <img src="https://res.cloudinary.com/dzbliymin/image/upload/v1781344474/Screenshot_from_2026-06-13_15-22-04_dtyy74.png" alt="Tour & Travels Varanasi Cover" width="800" height="400" />
 
   <h1 align="center">🌍 Tour & Travels Varanasi</h1>
 
   <p align="center">
-    A comprehensive travel booking platform connecting travelers with trusted guides and comfortable transportation for unforgettable journeys through Varanasi's most sacred and beautiful destinations.
+    A comprehensive travel booking platform connecting travelers with trusted guides and comfortable transportation for unforgettable journeys through Varanasi's most sacred and beautiful destinations
     <br />
     <a href="#features"><strong>Explore Features »</strong></a>
     <br />
@@ -49,7 +49,7 @@ Our solution:
 - ✅ **Multi-language support** for international visitors
 - ✅ **Secure payment integration** with Razorpay
 
-Whether you're exploring the ancient temples of Varanasi, discovering hidden spiritual sanctuaries, or experiencing the vibrant ghats along the Ganges, our platform connects you with vetted, professional guides and comfortable transportation for a worry-free journey.
+Whether you're exploring the ancient temples of Varanasi, discovering hidden spiritual sanctuaries, or experiencing the vibrant ghats along the Ganges, our platform connects you with vetted, professional guides and reliable transportation services.
 
 ---
 
